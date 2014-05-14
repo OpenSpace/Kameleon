@@ -1,4 +1,3 @@
-
 #########################################################################################
 # General settings
 #########################################################################################
@@ -88,8 +87,9 @@ set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${CDF_LIBRARIES})
 #########################################################################################
 configure_file (
 	${PROJECT_SOURCE_DIR}/kameleon-plus-Config.h.in
-	${PROJECT_BINARY_DIR}/kameleon-plus-Config.h
+	${PROJECT_SOURCE_DIR}/src/ccmc/Kameleon-plus-Config.h
 )
+include_directories("${PROJECT_SOURCE_DIR}")
 
 #########################################################################################
 # Executable
