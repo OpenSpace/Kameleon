@@ -26,7 +26,7 @@ namespace ccmc
 
 	/**
 	 * Constructor
-	 * @param modelReader
+	 * @param modelReader pointer to LFM model object
 	 */
 	LFMInterpolator::LFMInterpolator(Model * modelReader)
 	{
@@ -96,16 +96,16 @@ namespace ccmc
 	
 
 			clock_t telapsed;
-			std::cout<<"Setting polyhedral cells\n";
+			// std::cout<<"Setting polyhedral cells\n";
 			telapsed = clock();
 			setPolyhedralCells(); // populates polyhedra container
 			telapsed = clock() - telapsed;
-			printf ("It took %f seconds to initialize search cells.\n",((float)telapsed)/CLOCKS_PER_SEC);
+			// printf ("It took %f seconds to initialize search cells.\n",((float)telapsed)/CLOCKS_PER_SEC);
 
 			telapsed = clock();
 			LFMInterpolator::lfmtree.build(); // initialization
 			telapsed = clock() - telapsed;
-			printf ("It took %f seconds to build kd-tree index.\n",((float)telapsed)/CLOCKS_PER_SEC);
+			// printf ("It took %f seconds to build kd-tree index.\n",((float)telapsed)/CLOCKS_PER_SEC);
 			LFMInterpolator::initializeKDTreePolyhedra = false; 
 		};
 
@@ -122,10 +122,8 @@ namespace ccmc
 	};
 
 
-
-
 	/**
-	 * @param variable_id
+	 * @param variable_id 
 	 * @param c0
 	 * @param c1
 	 * @param c2
@@ -198,10 +196,10 @@ namespace ccmc
 		 * If searchPoly==NULL, this is the first time through, so getCell
 		 */
 
-		float Re_cm = 6.378e8; //Radius of earth in cm
+//		float Re_cm = 6.378e8; //Radius of earth in cm
 		Vector<float> point(c0,c1,c2); //point = point*Re_cm;
 
-		clock_t startDestruction, endDestruction;
+//		clock_t startDestruction, endDestruction;
 
 		if (searchPoly==NULL){ //this is the first time through, find cell
 //			std::cout<<"search poly was null, performing initial search"<<endl;
@@ -347,12 +345,12 @@ namespace ccmc
 
 	}
 
-	/*
+	/**
 	 * This function creates and stores the polyhedra used for interpolation.
 	 * Each polyhedron has vertices set by LFM cell centers.
 	 * In total, there are (ni-1)*(nj-1)*nk hexahedra (6 faces),
 	 * 				2*(ni-1) axis cells having nk+2 faces,
-	 * 				1 inner boundary cell having (nj-1)*nk + 2 faces
+	 * 				1 inner boundary cell having (nj-1)*nk + 2 faces.
 	 * This function also calculates polyhedral cell centers, which are put
 	 * in a point cloud and used for kd-tree searches
 	 *
@@ -421,8 +419,9 @@ namespace ccmc
 	 */
 	LFMInterpolator::~LFMInterpolator()
 	{
-		float total = 0; float elapsed_time = 0;
-		std::cout<<"destructing LFMInterpolator"<<endl;
+        float elapsed_time;
+//		float total = 0; float elapsed_time = 0;
+		// std::cout<<"destructing LFMInterpolator"<<endl;
 		// TODO Auto-generated destructor stub
 //		elapsed_time = ((float) getCellTime)/CLOCKS_PER_SEC; total += elapsed_time;
 //		std::cout<<"getCell time ="<<getCellTime<<" or "<< elapsed_time<<" seconds"<<endl;
@@ -439,8 +438,8 @@ namespace ccmc
 //		std::cout<<"destruction Time="<<elapsed_time<<endl;
 
 		elapsed_time = ((float) Polyhedron<float>::interpolationTime)/CLOCKS_PER_SEC;
-		std::cout<<"interpolation Time="<<elapsed_time<<endl;
-		std::cout<<"Interpolations performed:"<<Polyhedron<float>::interpolations<<endl;
+		// std::cout<<"interpolation Time="<<elapsed_time<<endl;
+		// std::cout<<"Interpolations performed:"<<Polyhedron<float>::interpolations<<endl;
 
 //		if (searchPoly != NULL){
 //			delete searchPoly;
@@ -607,8 +606,8 @@ namespace ccmc
 	}
 
 
-	/*
-	 * Return a pointer to the cell containing the point.
+	/**
+	 * Return a pointer to the cell containing the query point.
 	 */
 	Polyhedron<float>* LFMInterpolator::getCell(Vector<float> point){
 		/*
@@ -620,12 +619,12 @@ namespace ccmc
 		 */
 
 		clock_t tgetCellStart,tgetCellEnd;
-		clock_t startCreation,endCreation;
-		clock_t startDestruction,endDestruction;
+//		clock_t startCreation,endCreation;
+//		clock_t startDestruction,endDestruction;
 		tgetCellStart = clock();
 
 
-		float Re_cm = 6.378e8; //unused
+//		float Re_cm = 6.378e8; //unused
 		typedef float num_t;
 		num_t query_pt[3] = {point.c0(), point.c1(), point.c2()}; // c0,c1 do not need to be flipped...
 		const int num_results = 1; //changed from const size_t num_results = 1;
@@ -642,10 +641,10 @@ namespace ccmc
 
 		LFMInterpolator::lfmtree.nearest(query_pt, resultSet);
 
-		int polyI,polyJ,polyK;
+//		int polyI,polyJ,polyK;
 		int closestHelper = ret_index[0];
 		typedef float num_p;
-		Polyhedron<num_p>* pStartPoly;
+//		Polyhedron<num_p>* pStartPoly;
 		Polyhedron<num_p>* pLastPoly;
 		Polyhedron<num_p>* pCurrentPoly;
 		Polyhedron<num_p>* pNextPoly;
@@ -689,8 +688,8 @@ namespace ccmc
 			}
 			if (loopIndex > maxTries-3){
 				int face = pCurrentPoly->closestFace;
-				float eps = std::numeric_limits<float>::epsilon();
-				float piOver2 = Polyhedron<float>::piOver2;
+//				float eps = std::numeric_limits<float>::epsilon();
+//				float piOver2 = Polyhedron<float>::piOver2;
 				std::cerr<<"loop index: "<<loopIndex
 						<< " goal point: "
 						<< point.toString()
@@ -728,8 +727,10 @@ namespace ccmc
 
 	}
 
+	/**
+	* Constructs a single polyhedron out of all the polys used in interpolation
+	*/
 	Polyhedron<float> LFMInterpolator::getInterpolationPolys(){
-		//Construct a single polyhedron out of all the polys used in interpolation
 		Polyhedron<float> mergedPoly;
 		for(boost::unordered_map<int, Polyhedron<float>* >::iterator iter = interpolationPolysMap.begin(); iter != interpolationPolysMap.end(); iter++){
 			mergedPoly.merge(iter->second);

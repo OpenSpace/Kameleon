@@ -1,2 +1,10 @@
+# ignore generated files
 
-src/ccmc/Kameleon-plus-Config\.h
+/doc/html/*
+/doc/xml/*
+/doc/latex/*
+/bin/
+/build/
+/docs/build
+/docs/download
+/lib

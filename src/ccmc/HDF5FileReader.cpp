@@ -5,7 +5,7 @@
  *      Author: David Berrios
  */
 // #include "config.h"
-#include "Kameleon-plus-Config.h" //controlled by CMakeLists.txt
+#include "kameleon-plus-Config.h" //controlled by CMakeLists.txt
 #ifdef HAVE_HDF5 
 #include "HDF5FileReader.h"
 #include <string>
@@ -107,7 +107,7 @@ namespace ccmc
 			} else
 			{
 				status = OPEN_ERROR;
-				std::cerr << "Error opening hdf \"" << filename << "\". Not an hdf file?" << std::endl;
+				// std::cerr << "Error opening hdf \"" << filename << "\". Not an hdf file?" << std::endl;
 			}
 
 		}
@@ -149,7 +149,7 @@ namespace ccmc
 		{
 			//std::cout << "reading " << variable << std::endl;
 			//get variable number
-			long variableNum = this->getVariableID(variable);
+//			long variableNum = this->getVariableID(variable);
 
 			//std::cout << "variableNum for " << variable << ": " << variableNum << std::endl;
 			//get dim sizes
@@ -161,7 +161,7 @@ namespace ccmc
 			int rank = dataspace.getSimpleExtentNdims(); //should be 1
 			hsize_t count[1];
 			hsize_t offset[1] = {0};
-			int ndims = dataspace.getSimpleExtentDims(count, NULL);
+//			int ndims = dataspace.getSimpleExtentDims(count, NULL);
 
 			//std::cout << "count[0]: " << count[0] << std::endl;
 			float * buffer = new float[count[0]];
@@ -214,7 +214,7 @@ namespace ccmc
 		{
 			//std::cout << "reading " << variable << std::endl;
 			//get variable number
-			long variableNum = this->getVariableID(variable);
+//			long variableNum = this->getVariableID(variable);
 
 			//get dim sizes
 
@@ -331,7 +331,7 @@ namespace ccmc
 		int rank = dataspace.getSimpleExtentNdims(); //should be 1
 		hsize_t count[1];
 		hsize_t offset[1] = {0};
-		int ndims = dataspace.getSimpleExtentDims(count, NULL);
+//		int ndims = dataspace.getSimpleExtentDims(count, NULL);
 		float * buffer = new float[count[0]];
 
 
@@ -381,7 +381,7 @@ namespace ccmc
 		{
 			std::cout << "reading " << variable << std::endl;
 			//get variable number
-			long variableNum = this->getVariableID(variable);
+//			long variableNum = this->getVariableID(variable);
 
 			//get dim sizes
 
@@ -392,7 +392,7 @@ namespace ccmc
 			int rank = dataspace.getSimpleExtentNdims(); //should be 1
 			hsize_t count[1];
 			hsize_t offset[1] = {0};
-			int ndims = dataspace.getSimpleExtentDims(count, NULL);
+//			int ndims = dataspace.getSimpleExtentDims(count, NULL);
 			float * buffer = new float[count[0]];
 
 
@@ -432,7 +432,7 @@ namespace ccmc
 
 			//std::cout << "reading " << variable << std::endl;
 			//get variable number
-			long variableNum = this->getVariableID(variable);
+//			long variableNum = this->getVariableID(variable);
 
 			//get dim sizes
 
@@ -443,7 +443,7 @@ namespace ccmc
 			int rank = dataspace.getSimpleExtentNdims(); //should be 1
 			hsize_t count[1];
 			hsize_t offset[1] = {0};
-			int ndims = dataspace.getSimpleExtentDims(count, NULL);
+//			int ndims = dataspace.getSimpleExtentDims(count, NULL);
 			float * buffer = new float[count[0]];
 
 
@@ -529,13 +529,13 @@ namespace ccmc
 	 */
 	int HDF5FileReader::getVariableIntAtIndex(const std::string& variable, long index)
 	{
-		long counts[1];
+//		long counts[1];
 		int value = std::numeric_limits<int>::min();
 		if (this->doesVariableExist(variable))
 		{
 			//std::cout << "reading " << variable << std::endl;
 			//get variable number
-			long variableNum = this->getVariableID(variable);
+//			long variableNum = this->getVariableID(variable);
 
 			//get dim sizes
 
@@ -579,16 +579,17 @@ namespace ccmc
 	 */
 	Attribute HDF5FileReader::getGlobalAttribute(long i)
 	{
-
+#ifdef DEBUG
 		std::cerr << "entered " << BOOST_CURRENT_FUNCTION << " i = " << (int)i << std::endl;
+#endif
 		H5::Group group = this->current_file->openGroup("/");
-		std::cout<< "group assigned\n";
+		// std::cout<< "group assigned\n";
 		H5::Attribute h5attribute = group.openAttribute((unsigned int)i);
-		std::cout<< "attribute opened\n";
+		// std::cout<< "attribute opened\n";
 		H5::DataType dataType = h5attribute.getDataType();
-		std::cout<< "dataType retrieved\n";
+		// std::cout<< "dataType retrieved\n";
 		Attribute attribute;
-		std::cout << "checking dataType"<<std::endl;
+		// std::cout << "checking dataType"<<std::endl;
 		if (dataType.getClass() == H5T_STRING)
 		{
 			std::string attributeValue = "NULL";
@@ -1032,7 +1033,7 @@ namespace ccmc
 
 		H5::DataSpace dataspace = dataset.getSpace();
 		hsize_t count[1];
-		int ndims = dataspace.getSimpleExtentDims(count, NULL);
+//		int ndims = dataspace.getSimpleExtentDims(count, NULL);
 		return (long)count[0];
 	}
 

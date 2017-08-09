@@ -32,7 +32,7 @@ int main (int argc, char * argv[])
 	std::string variable = "rho";
 
 	H5::Group group = current_file->openGroup("/");
-	H5::Attribute attribute = group.openAttribute("rho");
+	H5::Attribute attribute = group.openAttribute();
 	/*H5::DataSet * dataset = new H5::DataSet(group.openDataSet(variable));
 
 	H5::DataSpace dataspace = dataset->getSpace();

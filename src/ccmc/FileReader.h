@@ -14,7 +14,12 @@
 #include <boost/unordered_map.hpp>
 #include "cdf.h"
 
-
+namespace pyplusplus{ namespace aliases{
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    typedef std::vector< float > vectorFloat;
+    typedef std::vector< int > vectorInt;
+    typedef std::vector< std::string > vectorString;
+} } //pyplusplus::aliases
 
 
 
@@ -24,9 +29,10 @@ namespace ccmc
 
 	/**
 	 * @class FileReader FileReader.h ccmc/FileReader.h
-	 * @brief TODO: Brief description of FileReader class
 	 *
-	 * TODO: Full description of FileReader class
+	 * @brief FileReader class is a pure virtual class for opening and accessing model variables
+	 *
+	 * All file readers are responsible for implementing the pure virtual functions listed here.
 	 */
 	class FileReader
 	{
@@ -63,6 +69,7 @@ namespace ccmc
 			void addVariableName(const std::string& variable, long id); //addVariableAttributes
 			long close();
 			virtual const std::string& getCurrentFilename() = 0;
+			void setCurrentFilename(const std::string& filename);
 			virtual void initializeVariableIDs() = 0;
 			virtual void initializeVariableNames() = 0;
 			virtual long closeFile() = 0;
@@ -97,5 +104,6 @@ namespace ccmc
 
 	};
 }
+
 
 #endif /* FILEREADER_H_ */

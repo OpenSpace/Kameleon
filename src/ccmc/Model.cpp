@@ -19,6 +19,7 @@ namespace ccmc
 	 */
 	Model::Model()
 	{
+		// std::cout << "model constructor called" << std::endl; 
 		missingValue = ccmc::defaults::missingValue;
 		units_ = "units";
 		variablesAdded = 0;
@@ -51,25 +52,29 @@ namespace ccmc
 	 */
 	long Model::close()
 	{
-		//TODO: clean up memory
-
-		if (variableData.size() > 0)
-		{
-			boost::unordered_map<std::string, std::vector<float>*>::iterator iter;
-
-			for ( iter=variableData.begin() ; iter != variableData.end(); iter++ )
+#ifdef DEBUG
+		std::cout << BOOST_CURRENT_FUNCTION << " cleaning up memory"<<std::endl;
+#endif
+		// python models must manage their own memory
+		if (getGlobalAttribute("python_model").getAttributeInt() == 0){
+			if (variableData.size() > 0)
 			{
-				delete iter->second;
+				boost::unordered_map<std::string, std::vector<float>*>::iterator iter;
+
+				for ( iter=variableData.begin() ; iter != variableData.end(); iter++ )
+				{
+					delete iter->second;
+				}
 			}
-		}
 
-		if (variableDataInt.size() > 0)
-		{
-			boost::unordered_map<std::string, std::vector<int>*>::iterator iter;
-
-			for (iter=variableDataInt.begin(); iter != variableDataInt.end(); iter++)
+			if (variableDataInt.size() > 0)
 			{
-				delete iter->second;
+				boost::unordered_map<std::string, std::vector<int>*>::iterator iter;
+
+				for (iter=variableDataInt.begin(); iter != variableDataInt.end(); iter++)
+				{
+					delete iter->second;
+				}
 			}
 		}
 
@@ -78,6 +83,9 @@ namespace ccmc
 		variableDataInt.clear();
 		variableDataByID.clear();
 		variableDataIntByID.clear();
+#ifdef DEBUG
+		std::cout << BOOST_CURRENT_FUNCTION << " calling  GeneralFileReader::close()"<<std::endl;
+#endif
 
 		return GeneralFileReader::close();
 	}
@@ -107,6 +115,7 @@ namespace ccmc
 	/**
 	 * @brief Load a variable into memory.
 	 *
+	 * Checks to see if this variable is loaded, and if not, checks that it exists in the file.
 	 * Use this method when the variable to load is of type float
 	 *
 	 * @param variable Variable to load into memory.
@@ -115,8 +124,9 @@ namespace ccmc
 	long Model::loadVariable(const std::string& variable)
 	{
 
-
-		//first, check to determine whether variable is already loaded
+#ifdef DEBUG
+		std::cout <<"\t"<< BOOST_CURRENT_FUNCTION << "see if variable is already loaded" << std::endl;
+#endif 
 		if (variableData.find(variable) != variableData.end())
 			return FileReader::OK;
 
@@ -126,19 +136,30 @@ namespace ccmc
 			std::cerr <<"Problem: "<< variable << " does not exist" << std::endl;
 			return FileReader::VARIABLE_DOES_NOT_EXIST;
 		}
+#ifdef DEBUG
+		std::cout <<"\t"<< BOOST_CURRENT_FUNCTION << "Requested variable exists" << std::endl;
+#endif
 		std::vector<float> * data = getVariable(variable);
+#ifdef DEBUG
+		std::cout <<"\t"<< BOOST_CURRENT_FUNCTION << "received variable" << std::endl;
+#endif
 		long id = getVariableID(variable);
-//std::cout << BOOST_CURRENT_FUNCTION << " id: " << id << std::endl;
+#ifdef DEBUG
+		std::cout << "\t" << BOOST_CURRENT_FUNCTION << " id: " << id << std::endl;
+#endif
 		if (data->size() > 0)
 		{
-
-			//std::cout << "adding " << variable << " to maps" << std::endl;
+#ifdef DEBUG
+			std::cout << "\t" << BOOST_CURRENT_FUNCTION << " adding " << variable << " to maps" << std::endl;
+#endif
 			variableData[variable] = data;
 			variableDataByID[id] = data;
 		} //else return false;
 		else
 		{
-			//std::cout << "not adding " << variable << " to maps" << std::endl;
+#ifdef DEBUG
+			std::cout << BOOST_CURRENT_FUNCTION << "not adding " << variable << " to maps. Deleting data." << std::endl;
+#endif
 			delete data;
 		}
 
@@ -156,23 +177,28 @@ namespace ccmc
 	long Model::unloadVariable(const std::string& variable)
 	{
 		//bool success = false;
-
-		//first, check to determine whether variable is already loaded
-		if (variableData.find(variable) != variableData.end())
-		{
-			std::vector<float> * data = variableData[variable];
-			long id = getVariableID(variable);
-			delete data;
-			variableData.erase(variable);
-			variableDataByID.erase(id);
+	// python models must manage their own memory
+		if (getGlobalAttribute("python_model").getAttributeInt() == 0){
+			//first, check to determine whether variable is already loaded
+			if (variableData.find(variable) != variableData.end())
+			{
+				std::vector<float> * data = variableData[variable];
+				long id = getVariableID(variable);
+				delete data;
+				variableData.erase(variable);
+				variableDataByID.erase(id);
+				return FileReader::OK;
+			}
+			return FileReader::VARIABLE_NOT_IN_MEMORY;
+		} else{
 			return FileReader::OK;
 		}
-		return FileReader::VARIABLE_NOT_IN_MEMORY;
 	}
 
 	/**
 	 * @brief Loads a variable into memory.
 	 *
+	 * Checks to see if this variable is loaded, and if not, checks that it exists in the file
 	 * Use this method when the variable to load is of type int
 	 *
 	 * @param variable
@@ -490,7 +516,7 @@ namespace ccmc
 	void Model::addFloatVariableToMap(const std::string& variable, std::vector<float>* varData){
 		int numberOfVariables = getNumberOfVariables(); //number of variables in data file
 		long newVariableId = numberOfVariables + variablesAdded; //ID#s start at 0, variablesAdded initially 0
-		std::cout<<"adding variable "<<variable<<" to map with id "<< newVariableId << std::endl;
+		// std::cout<<"adding variable "<<variable<<" to map with id "<< newVariableId << std::endl;
 		variableData[variable]=varData;
 		variableDataByID[newVariableId]=varData;
 		fileReader->addVariableName(variable,newVariableId);

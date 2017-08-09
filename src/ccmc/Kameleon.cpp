@@ -39,7 +39,11 @@ namespace ccmc
 	extern "C" double gregorian_calendar_to_jd(int y, int m, int d, int h, int mi, int s);
 	extern "C" long date2es(int yyyy, int mm, int dd, int hh, int mm2, int ss);
 	extern "C" long cxRound(double doub);
-
+	boost::unordered_map<int, ccmc::Kameleon *> kameleonObjects;
+	boost::unordered_map<int, ccmc::Tracer *> tracerObjects;
+	boost::unordered_map<int, ccmc::Interpolator *> interpolatorObjects;
+	boost::unordered_map<int, ccmc::GeneralFileReader *> generalFileReaderObjects;
+	boost::unordered_map<int, ccmc::TimeInterpolator *> timeInterpolatorObjects;
 
 	/**
 	 * Default constructor
@@ -61,9 +65,13 @@ namespace ccmc
 	 */
 	Kameleon::~Kameleon()
 	{
+		// std::cout << "Kameleon object self destructing" << std::endl;
 
 		if (model != NULL)
 		{
+#ifdef DEBUG
+			std::cout << BOOST_CURRENT_FUNCTION << " Kameleon object closing model" << std::endl;
+#endif
 			model->close();
 			delete model;
 		}
@@ -105,8 +113,8 @@ namespace ccmc
 		variableAliases.clear();
 
 		//variableData.clear(); //stores the original variable data, if loaded into memory.
-		listOfRequiredVariablesForComponents.clear();
-		listOfRequiredVariablesForVectors.clear();
+		// listOfRequiredVariablesForComponents.clear();
+		// listOfRequiredVariablesForVectors.clear();
 		listOfRequiredVariablesForComponentsByID.clear();
 		listOfRequiredVariablesForVectorsByID.clear();
 
@@ -118,7 +126,9 @@ namespace ccmc
 	 */
 	void Kameleon::initializeExtraInformation()
 	{
-
+#ifdef DEBUG
+		std::cout << "Kameleon::initializeExtraInformation" <<std::endl;
+#endif
 		//modelName = getGlobalAttributeString("model_name");
 		clearMaps();
 		initializeUnits();
@@ -144,7 +154,7 @@ namespace ccmc
 		boost::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
 		if (iter != variableAliases.end())
 			variable_str = variableAliases[variable_str];
-		cout << "variable_str: " << variable_str << endl;
+		// cout << "variable_str: " << variable_str << endl;
 
 		//units were never fetched before
 		//first, attempt fetch from Kameleon's map for derived variables.
@@ -201,7 +211,7 @@ namespace ccmc
 		boost::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
 		if (iter != variableAliases.end())
 			variable_str = variableAliases[variable_str];
-		cout << "variable_str: " << variable_str << endl;
+		// cout << "variable_str: " << variable_str << endl;
 
 		//units were never fetched before
 		//first, attempt fetch from Kameleon's map for derived variables.
@@ -381,6 +391,7 @@ namespace ccmc
 	 */
 	long Kameleon::close()
 	{
+		std::cout<< "Kameleon::close() calling model's close"<< std::endl;
 		if (model != NULL)
 		{
 			model->close();
@@ -392,13 +403,31 @@ namespace ccmc
 	}
 
 	/**
-	 * Returns a new interpolater that maintains state information independent of other interpolators. This can be used to
+	 * Returns a new KameleonInterpolator that maintains state information independent of other interpolators. This can be used to
 	 * parallelize the interpolations.
 	 * @return A new interpolator.
 	 */
 	Interpolator * Kameleon::createNewInterpolator()
 	{
 		Interpolator * interpolator = new KameleonInterpolator(model);
+		return interpolator;
+	}
+
+	/**
+	* Return a new KameleonInterpolator that gives access to all methods rather than the polymorphic
+	* pointer returned by createNewInterpolator(). This makes explicit that we have new features for
+	* transforming between coordinate frames.
+	* @return A new KameleonInterpolator
+	*/
+	KameleonInterpolator * Kameleon::createCoordinateInterpolator()
+	{
+		KameleonInterpolator * interpolator = new KameleonInterpolator(model);
+		return interpolator;
+	}
+
+	KameleonInterpolator* Kameleon::createCoordinateInterpolator(const std::string& preferred_coordinates)
+	{
+		KameleonInterpolator * interpolator = new KameleonInterpolator(model, preferred_coordinates);
 		return interpolator;
 	}
 
@@ -416,12 +445,16 @@ namespace ccmc
 	 */
 	bool Kameleon::loadVariable(const std::string& variable)
 	{
-
+#ifdef DEBUG
+		std::cout << "\tKameleon::loadVariable requesting required variables.." << std::endl;
+#endif
 		std::vector<std::string> requiredVariables = this->getListOfRequiredVariablesForComponents(variable);
 		bool success = true;
 		for (int i = 0; i < requiredVariables.size(); i++)
 		{
-			std::cout << "Kameleon::loadVariable:loading " << requiredVariables[i] << std::endl;
+#ifdef DEBUG
+			std::cout << "\tKameleon::loadVariable:loading " << requiredVariables[i] << std::endl;
+#endif
 			if (model->loadVariable(requiredVariables[i]) != FileReader::OK)
 			{
 				return false;
@@ -530,13 +563,22 @@ namespace ccmc
 			return (*iter).second;
 		} else
 		{
+#ifdef DEBUG
+			std::cout << "\tKameleon::getListOfRequiredVariablesForComponents variable " << variable << " not in list. Does it exist?" << std::endl;
+#endif
 			if (model->doesVariableExist(variable))
 			{
+#ifdef DEBUG
+			std::cout << "\tKameleon::getListOfRequiredVariablesForComponents variable  exists in model" << std::endl;
+#endif
 				std::vector<std::string> required;
 				required.push_back(variable);
 				return required;
 			} else
 			{
+#ifdef DEBUG
+			std::cout << "\tvariable not in model" << std::endl;
+#endif
 				std::vector<std::string> required;
 				return required;
 			}
@@ -584,7 +626,7 @@ namespace ccmc
 			return (*iter).second;
 		else
 		{
-			std::cout << "Kameleon::getConversionFactorToSI(): " << std::endl;
+			// std::cout << "Kameleon::getConversionFactorToSI(): " << std::endl;
 			return model->getConversionFactorToSI(variable);
 		}
 	}

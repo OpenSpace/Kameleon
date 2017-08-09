@@ -19,10 +19,11 @@
  * - Ionospheric component of SWMF
  * - ENLIL
  * - MAS
+ * - LFM
  * - CTIP
  * - ADAPT3D
  *
- * Java, C, and Fortran compatible interfaces are provided through the use of the wrapper headers and code (ccmc/wrappers/*).
+ * Java, C, and Fortran compatible interfaces are provided through the use of the wrapper headers and code (ccmc/wrappers/).
  *
  * @section Purpose
  * The purpose of this library is to provide easy access and interpolation methods
@@ -46,6 +47,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
 #include "Interpolator.h"
+// #include "KameleonInterpolator.h"
 #include "Model.h"
 #include "GeneralFileReader.h"
 #include "TimeInterpolator.h"
@@ -90,15 +92,15 @@ namespace ccmc
 		float c2;
 	};
 
-
+	class KameleonInterpolator;
 
 
 
 	/**
 	 * @class Kameleon Kameleon.h ccmc/Kameleon.h
-	 * @brief TODO: Brief description of Kameleon class
+	 * @brief The Kameleon class provides access to space weather models and data products in a model-independent fashion.
 	 *
-	 * TODO: Full description of Kameleon class
+	 * The Kameleon class determines which model reader and interpolator to use. It also manages derived variables and unit conversions.
 	 */
 	class Kameleon
 	{
@@ -107,6 +109,8 @@ namespace ccmc
 			virtual ~Kameleon();
 			long close();
 			Interpolator* createNewInterpolator();
+			KameleonInterpolator* createCoordinateInterpolator(); //expose methods for this class
+			KameleonInterpolator* createCoordinateInterpolator(const std::string& preferred_coordinates); //expose methods for this class
 			bool doesAttributeExist(const std::string& attribute);
 			bool doesVariableExist(const std::string& variable);
 			float getConversionFactorToSI(const std::string& variable);
@@ -178,6 +182,7 @@ namespace ccmc
 			std::vector<long> createVectorOfLongFromList(int num, std::string * strings);
 			std::string padString(const std::string& s, int minLength);
 			std::string modelName;
+			int pythonModel;
 
 			std::vector<std::string> getListOfRequiredVariablesForComponents(std::string variable);
 			std::vector<std::string> getListOfRequiredVariablesForVectors(std::string variable);
@@ -193,11 +198,11 @@ namespace ccmc
 
 
 	};
-	static boost::unordered_map<int, ccmc::Kameleon *> kameleonObjects;
-	static boost::unordered_map<int, ccmc::Tracer *> tracerObjects;
-	static boost::unordered_map<int, ccmc::Interpolator *> interpolatorObjects;
-	static boost::unordered_map<int, ccmc::GeneralFileReader *> generalFileReaderObjects;
-	static boost::unordered_map<int, ccmc::TimeInterpolator *> timeInterpolatorObjects;
+	extern boost::unordered_map<int, ccmc::Kameleon *> kameleonObjects;
+	extern boost::unordered_map<int, ccmc::Tracer *> tracerObjects;
+	extern boost::unordered_map<int, ccmc::Interpolator *> interpolatorObjects;
+	extern boost::unordered_map<int, ccmc::GeneralFileReader *> generalFileReaderObjects;
+	extern boost::unordered_map<int, ccmc::TimeInterpolator *> timeInterpolatorObjects;
 
 }
 

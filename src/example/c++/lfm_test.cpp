@@ -6,8 +6,7 @@
  *
  *  This program illustrates some simple ways of using the LFM interpolator.
  *  Note: The initialization phase is somewhat long - it sets up millions of polyhedral cells,
- *  then primes all of them for interpolation. The time spent actually interpolating is printed
- *  whenever the LFMInterpolator is destroyed.
+ *  then primes all of them for interpolation. 
  *
  */
 
@@ -41,20 +40,21 @@ int main (int argc, char * argv[])
 	if ((argc != 6) && (argc != 4))
 	{
 		cout << "You must use the following format to test LFM interpolation at a point in GSE coordinates:\n"
-				<<"\t ./lfm path/to/kameleon/converterd/LFMfile.h5 variable x y z \n"
-				<<"with variable set to: bx by bz ex ey ez ux uy uz rho p\n"
+				<<"\t ./lfm path/to/kameleon/converterd/LFMfile.h5 <variable> x y z \n"
+				<<"with <variable> set to: bx by bz ex ey ez ux uy uz rho p\n"
 				<<"or, to interpolate all available lfm variables onto a list of input (single spaced) positions, use\n"
-				<<"\t ./lfm path/to/kameleon/converterd/LFMfile.h5 path/to/positions.txt path/to/output/file.txt"
+				<<"\t ./lfm path/to/kameleon/converterd/LFMfile.h5 path/to/positions.txt path/to/output/file.txt\n"
+				<<"units will be: bx by bz[T] ex ey ez[V/m] ux uy uz [m/s] rho [g/cc] p [Pa]\n"
 				<< endl;
 		exit(1);
 	}
 
 	string filename = argv[1];
 
-	cout<<"Creating LFM object... ";
+	cout<<"Creating LFM object... "<<std::endl;
 	LFM * lfm = new LFM;
 
-	cout<<"Opening LFM.\n";
+	cout<<"Opening LFM.\n"<<std::endl;
 	lfm->open(filename);
 
 	/*
@@ -68,7 +68,7 @@ int main (int argc, char * argv[])
 	lfm->loadVariable("uy");
 	lfm->loadVariable("uz");
 
-	cout<<"initializing interpolator (takes a few seconds)... ";
+	cout<<"initializing interpolator (takes a few seconds)... "<< std::endl;
 	LFMInterpolator interpolator(lfm);
 	cout<<"done.\n";
 
@@ -82,11 +82,11 @@ int main (int argc, char * argv[])
 		py = boost::lexical_cast<float>(argv[4]);
 		pz = boost::lexical_cast<float>(argv[5]);
 
-		cout<<"Interpolating variable "<< variable <<" at ("<< px <<","<<py<<","<<pz<<")...\n";
+		cout<<"Interpolating variable "<< variable <<" at ("<< px <<","<<py<<","<<pz<<")...\n"<<std::endl;
 
 		float variableOut = interpolator.interpolate(variable,px,py,pz, dx,dy,dz);
 
-		std::cout<<variable << "("<< px <<","<<py<<","<<pz<<")="<<variableOut<<endl;
+		std::cout<<variable << "("<< px <<","<<py<<","<<pz<<") = "<<variableOut<< " " << endl;
 		std::cout<<"resolution at query point: "<<dx<<", "<<dy<<", "<<dz<<endl;
 	}
 

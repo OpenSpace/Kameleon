@@ -12,11 +12,25 @@
 #include <iostream>
 #include <fstream>
 #include <queue>
-
+#ifdef HAVE_PYTHON
+#include <boost/python.hpp> 
+#endif
 using namespace std;
 
 namespace ccmc
 {
+	// A.Pembroke added these to avoid compiler linker errors
+	const long FileReader::OK;
+	const long FileReader::OPEN_ERROR;
+	const long FileReader::FILE_DOES_NOT_EXIST;
+	const long FileReader::VARIABLE_DOES_NOT_EXIST;
+	const long FileReader::ATTRIBUTE_DOES_NOT_EXIST;
+	const long FileReader::LOAD_FAILED;
+	const long FileReader::UNABLE_TO_ALLOCATE_MEMORY;
+	const long FileReader::VARIABLE_NOT_IN_MEMORY;
+	const long FileReader::MODEL_NOT_SUPPORTED;
+	const long FileReader::NOT_A_VALID_KAMELEON_FILE;
+
 	/**
 	 * Default constructor. Does nothing.
 	 */
@@ -29,11 +43,29 @@ namespace ccmc
 
 	/**
 	 * @param filename
-	 * @return The CDF status of the open call.  CDF_OK is the standard successful status.
+	 * @return The status of the open call.  OK is the standard successful status.
 	 */
 	long FileReader::open(const std::string& filename, bool readonly)
 	{
+#ifdef HAVE_PYTHON
+		// std::cout << "c++ open() calling openFile()" << std::endl;
+		namespace bp = boost::python;
+		try {
+			return openFile(filename, readonly);
+		} catch (bp::error_already_set) {
+			PyErr_Print();
+			return FileReader::OPEN_ERROR;
+		}
+#else 
 		return openFile(filename, readonly);
+#endif /* HAVE_PYTHON */
+		
+	}
+
+	void FileReader::setCurrentFilename(const std::string& filename)
+	{
+		// std::cout << "c++ setting current_filename to " << filename << std::endl;
+		this->current_filename = filename;
 	}
 
 	/**
@@ -42,6 +74,7 @@ namespace ccmc
 	 */
 	long FileReader::close()
 	{
+		// std::cout << "c++ close() calling closeFile()" << std::endl;
 		long status = closeFile();
 		current_filename = "";
 		variableIDs.clear();
