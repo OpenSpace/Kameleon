@@ -2,7 +2,7 @@
 
 cmake_minimum_required (VERSION 2.8) 
 project (Kameleon)
-cmake_policy(SET CMP0026 OLD)
+#cmake_policy(SET CMP0026 OLD)
 
 #Set version number
 set(Kameleon_VERSION_MAJOR "6")

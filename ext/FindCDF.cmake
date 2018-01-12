@@ -3,7 +3,7 @@ set(CDF_LIB_HINTS "/opt/local/lib" "/usr/lib" "/usr/local/lib")
 
 if(NOT CDF_PATH)
 	set(CDF_PATH "${KAMELEON_EXT_DIR}/cdf")
-    set(CDF_SRC_PATH "${CDF_PATH}/cdf35_0-dist/src")
+    set(CDF_SRC_PATH "${CDF_PATH}/cdf36_4-dist/src")
     set(CDF_INC_HINTS ${CDF_INC_HINTS} "${CDF_SRC_PATH}/include")
     set(CDF_LIB_HINTS ${CDF_LIB_HINTS} "${CDF_SRC_PATH}/lib")
 endif()
