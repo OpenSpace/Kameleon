@@ -1,11 +1,19 @@
-# core kameleon library (kameleon-plus/src/ccmc)
+# core kameleon library (kameleon-plus/ext/cdf)
+set(msg_prefix "ext/cdf")
+message(" ")
+message("============ cdf library(" ${msg_prefix} ") ==============")
+set(msg_prefix " ")
 
 #########################################################################################
 # General settings
 #########################################################################################
-if (NOT CDF_ROOT_DIR)
-    set(CDF_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cdf35_0-dist)
+if (NOT CDF_DIST)
+	set(CDF_DIST cdf36_4-dist)
 endif ()
+
+set(CDF_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${CDF_DIST})
+
+message(STATUS "Building from ${CDF_ROOT_DIR}")
 
 #########################################################################################
 # Files and group settings
@@ -21,8 +29,8 @@ if(NOT WIN32)
 	list(REMOVE_ITEM CDF_SOURCE ${CDF_ROOT_DIR}/src/lib/libmain.c)
 endif(NOT WIN32)
 
-source_group(Cdf FILES ${CDF_SOURCE})  
-source_group(Cdf FILES ${CDF_HEADER})  
+source_group(cdf FILES ${CDF_SOURCE})  
+source_group(cdf FILES ${CDF_HEADER})  
 
 set(ALL_SOURCE ${CDF_SOURCE})
 set(ALL_HEADER ${CDF_HEADER})
@@ -58,13 +66,13 @@ endif(BUILD_SHARED_LIBS)
 
 # CDF
 set(CDF_INCLUDE_DIRS ${CDF_ROOT_DIR}/src/include)
-set(CDF_LIBRARIES cdf )
+set(CDF_LIB cdf)
 
 include_directories(${CDF_INCLUDE_DIRS})
 
 # hack to make variables accessible from top-level CMakeLists
 set(CDF_INCLUDE_DIRS ${CDF_INCLUDE_DIRS} PARENT_SCOPE)
-set(CDF_LIBRARIES ${CDF_LIBRARIES} PARENT_SCOPE)
+set(CDF_LIB ${CDF_LIB} PARENT_SCOPE)
 
 
 

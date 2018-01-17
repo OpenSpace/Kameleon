@@ -96,7 +96,7 @@ void Tracer_unidirectionalTrace(int id, const char * variable, const float * sta
 	std::string variable_str = variable;
 	ccmc::Tracer * tracer = tracerObjects[id];
 	tracer->setMaxIterations(*step_max);
-	if (dn < 0)
+	if (*dn < 0)
 	{
 		tracer->setDn(-*dn);
 		Fieldline fieldline = tracer->unidirectionalTrace(variable_str, *startComponent1, *startComponent2, *startComponent3, ccmc::Tracer::REVERSE);

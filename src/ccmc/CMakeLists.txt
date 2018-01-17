@@ -1,5 +1,5 @@
 # core kameleon library (kameleon-plus/src/ccmc)
-set(msg_prefix "src/ccmc>")
+set(msg_prefix "src/ccmc")
 message(" ")
 message("============ ccmc library(" ${msg_prefix} ") ==============")
 set(msg_prefix " ")
@@ -33,11 +33,13 @@ set(ALL_HEADER ${CCMC_HEADER})
 if(BUILD_SHARED_LIBS)
     message(STATUS ${msg_prefix} "will build SHARED ccmc library")
     add_library(ccmc SHARED ${ALL_SOURCE} ${ALL_HEADER})
+    add_dependencies(ccmc cdf)
 endif(BUILD_SHARED_LIBS)
 
 if(BUILD_STATIC_LIBS)
     message(STATUS ${msg_prefix} "will build STATIC ccmc library")
     add_library(ccmc_static STATIC ${ALL_SOURCE} ${ALL_HEADER})
+    add_dependencies(ccmc cdf)
 endif(BUILD_STATIC_LIBS)
 
 # Fix up the install names
@@ -83,6 +85,7 @@ endif(BUILD_STATIC_LIBS)
 message(STATUS ${msg_prefix} "Include CDF: " ${CDF_INCLUDES})
 message(STATUS ${msg_prefix} "link CDF: " ${CDF_LIB})
 
+set(CDF_ROOT_DIR "${KAMELEON_EXT_DIR}/cdf")
 
 ############## hdf5 #############
 if(BUILD_HDF5)
