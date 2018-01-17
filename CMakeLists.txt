@@ -21,7 +21,7 @@ set(KAMELEON_LIB_DIR "${KAMELEON_BASE_DIR}/lib")
 set(CCMC_DIR "${KAMELEON_SRC_DIR}/ccmc/")
 
 # Link Kameleon as library (do not build wrappers and examples)
-option(KAMELEON_LIBRARY_ONLY "Build with Kameleon as library only" OFF)
+option(KAMELEON_LIBRARY_ONLY "Build with Kameleon as library only" ON)
 
 # Set whether to build shared or static
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
@@ -127,9 +127,10 @@ set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${CDF_LIBRARIES})
 #########################################################################################
 configure_file (
 	${PROJECT_SOURCE_DIR}/kameleon-plus-Config.h.in
-	${PROJECT_BINARY_DIR}/kameleon-plus-Config.h
+	${PROJECT_SOURCE_DIR}/src/ccmc/kameleon-plus-Config.h
 )
 include_directories("${PROJECT_SOURCE_DIR}")
+
 
 #########################################################################################
 # Executable
