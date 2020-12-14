@@ -6,6 +6,10 @@
 cmake_minimum_required (VERSION 2.8) 
 project (Kameleon)
 
+# Use <PackageName>_ROOT variables
+# https://cmake.org/cmake/help/git-stage/policy/CMP0074.html
+cmake_policy(SET CMP0074 NEW)
+
 #Set version number
 set(Kameleon_VERSION_MAJOR "6")
 set(Kameleon_VERSION_MINOR "0")
