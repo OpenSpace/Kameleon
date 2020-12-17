@@ -7,8 +7,8 @@
 
 #ifndef KAMELEONINTERPOLATOR_H_
 #define KAMELEONINTERPOLATOR_H_
-#include <boost/unordered_map.hpp>
 
+#include <unordered_map>
 #include "Interpolator.h"
 
 namespace ccmc
@@ -69,14 +69,14 @@ namespace ccmc
 			std::string modelName;
 			Model * modelReader;
 			Interpolator * interpolator;
-			boost::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForComponents;
-			boost::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForVectors;
+			std::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForComponents;
+			std::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForVectors;
 
 
-			boost::unordered_map<std::string, CalculationMethod> calculationMethod;
-			boost::unordered_map<std::string, float> conversionFactorsToSI;
-			boost::unordered_map<std::string, float> conversionFactorsToVis;
-			boost::unordered_map<std::string, std::string> variableAliases;
+			std::unordered_map<std::string, CalculationMethod> calculationMethod;
+			std::unordered_map<std::string, float> conversionFactorsToSI;
+			std::unordered_map<std::string, float> conversionFactorsToVis;
+			std::unordered_map<std::string, std::string> variableAliases;
 
 			//std::vector<std::string> getListOfRequiredVariablesForComponents(std::string variable);
 			//std::vector<std::string> getListOfRequiredVariablesForVectors(std::string variable);

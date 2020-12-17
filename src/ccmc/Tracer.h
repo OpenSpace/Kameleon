@@ -5,11 +5,11 @@
 //#include <map>
 #include <vector>
 #include <string>
+#include <unordered_map>
 #include "Kameleon.h"
 #include "Interpolator.h"
 #include "Point3f.h"
 #include "Fieldline.h"
-#include <boost/unordered_map.hpp>
 //using namespace std;
 /**
  * @namespace ccmc
@@ -96,7 +96,7 @@ namespace ccmc
 			bool isValidIteration(int iterations, int max);
 			float calculateDT(float& dComponent1, float& dComponent2, float& dComponent3, float& dn);
 			Kameleon * kameleon;
-			boost::unordered_map<std::string, std::vector<std::string> > componentNamesMap;
+			std::unordered_map<std::string, std::vector<std::string> > componentNamesMap;
 			void initializeComponentNamesMap();
 			bool interpolatorAllocated;
 

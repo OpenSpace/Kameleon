@@ -141,7 +141,7 @@ namespace ccmc
 	{
 		std::string units;
 		std::string variable_str = variable;
-		boost::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
+		std::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
 		if (iter != variableAliases.end())
 			variable_str = variableAliases[variable_str];
 		cout << "variable_str: " << variable_str << endl;
@@ -170,7 +170,7 @@ namespace ccmc
 	{
 		std::string units;
 		std::string variable_str = variable;
-		boost::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
+		std::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
 		if (iter != variableAliases.end())
 			variable_str = variableAliases[variable_str];
 		// cout << "variable_str: " << variable_str << endl;
@@ -198,7 +198,7 @@ namespace ccmc
 	{
 		std::string units;
 		std::string variable_str = variable;
-		boost::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
+		std::unordered_map<std::string, std::string>::iterator iter = variableAliases.find(variable_str);
 		if (iter != variableAliases.end())
 			variable_str = variableAliases[variable_str];
 		cout << "variable_str: " << variable_str << endl;
@@ -523,7 +523,7 @@ namespace ccmc
 	 */
 	std::vector<std::string> Kameleon::getListOfRequiredVariablesForComponents(std::string variable)
 	{
-		boost::unordered_map<std::string, std::vector<std::string> >::iterator iter =
+		std::unordered_map<std::string, std::vector<std::string> >::iterator iter =
 				this->listOfRequiredVariablesForComponents.find(variable);
 		if (iter != listOfRequiredVariablesForComponents.end())
 		{
@@ -551,7 +551,7 @@ namespace ccmc
 	 */
 	std::vector<std::string> Kameleon::getListOfRequiredVariablesForVectors(std::string variable)
 	{
-		boost::unordered_map<std::string, std::vector<std::string> >::iterator iter =
+		std::unordered_map<std::string, std::vector<std::string> >::iterator iter =
 				this->listOfRequiredVariablesForVectors.find(variable);
 		if (iter != listOfRequiredVariablesForVectors.end())
 		{
@@ -578,7 +578,7 @@ namespace ccmc
 	 */
 	float Kameleon::getConversionFactorToSI(const std::string& variable)
 	{
-		boost::unordered_map<std::string, float>::iterator iter = conversionFactorsToSI.find(variable);
+		std::unordered_map<std::string, float>::iterator iter = conversionFactorsToSI.find(variable);
 
 		if (iter != conversionFactorsToSI.end())
 			return (*iter).second;

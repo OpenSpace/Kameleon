@@ -10,7 +10,7 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 #include "GeneralFileReader.h"
 #include "Interpolator.h"
@@ -88,18 +88,18 @@ namespace ccmc
 
 		protected:
 			//only need these for the BOOST_FOREACH macro to work
-			typedef boost::unordered_map<std::string, std::vector<float>*> mapStringFloat;
-			typedef boost::unordered_map<std::string, std::vector<int>*> mapStringInt;
-			typedef boost::unordered_map<long, std::vector<float>*> mapLongFloat;
-			typedef boost::unordered_map<long, std::vector<int>*> mapLongInt;
+			typedef std::unordered_map<std::string, std::vector<float>*> mapStringFloat;
+			typedef std::unordered_map<std::string, std::vector<int>*> mapStringInt;
+			typedef std::unordered_map<long, std::vector<float>*> mapLongFloat;
+			typedef std::unordered_map<long, std::vector<int>*> mapLongInt;
 			std::string modelName;
-			boost::unordered_map<std::string, float> conversionFactorsToSI; //fetch variable name first, if using variable id instead
-			boost::unordered_map<std::string, std::string> variableSIUnits;
-			boost::unordered_map<std::string, std::vector<float>*> variableData;
-			boost::unordered_map<std::string, std::vector<int>*> variableDataInt;
+			std::unordered_map<std::string, float> conversionFactorsToSI; //fetch variable name first, if using variable id instead
+			std::unordered_map<std::string, std::string> variableSIUnits;
+			std::unordered_map<std::string, std::vector<float>*> variableData;
+			std::unordered_map<std::string, std::vector<int>*> variableDataInt;
 
-			boost::unordered_map<long, std::vector<float>*> variableDataByID;
-			boost::unordered_map<long, std::vector<int>*> variableDataIntByID;
+			std::unordered_map<long, std::vector<float>*> variableDataByID;
+			std::unordered_map<long, std::vector<int>*> variableDataIntByID;
 
 			/**
 			 * @brief Initializes the conversionFactorsToSI map.

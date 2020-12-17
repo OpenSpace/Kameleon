@@ -61,7 +61,7 @@ namespace ccmc
 	long FileReader::getVariableID(const std::string& variable)
 	{
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
+		std::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
 		if (iter != variableIDs.end())
 			return (*iter).second;
 		else

@@ -1799,7 +1799,7 @@ namespace ccmc
 		//std::string * vectorComponentName3;
 		//Interpolator * interpolator = kameleon->createNewInterpolator();
 
-		boost::unordered_map<std::string, std::vector<std::string> >::iterator iter = componentNamesMap.find(variable);
+		std::unordered_map<std::string, std::vector<std::string> >::iterator iter = componentNamesMap.find(variable);
 		if (iter == componentNamesMap.end())
 			return Point3f(kameleon->getMissingValue(), kameleon->getMissingValue(), kameleon->getMissingValue());
 		//std::cout << "variable: " << variable << " c0: " << ((*iter).second)[0] << std::endl;

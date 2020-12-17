@@ -10,7 +10,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <boost/lexical_cast.hpp>
 
 namespace ccmc
 {
@@ -90,8 +89,8 @@ namespace ccmc
 	template<class T>
 	std::string Point<T>::toString()
 	{
-		std::string temp = "(" + boost::lexical_cast<std::string>(components[0]) + "," + boost::lexical_cast<
-				std::string>(components[1]) + "," + boost::lexical_cast<std::string>(components[2]) + ")";
+		std::string temp = "(" + std::to_string(components[0]) + "," +
+			std::to_string(components[1]) + "," + std::to_string(components[2]) + ")";
 		return temp;
 
 	}

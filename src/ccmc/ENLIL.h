@@ -44,8 +44,8 @@ namespace ccmc
 			std::string filename;
 
 			void initializeMaps();
-			boost::unordered_map<std::string, bool> changeSignFlag;
-			boost::unordered_map<long, bool> changeSignFlagByID;
+			std::unordered_map<std::string, bool> changeSignFlag;
+			std::unordered_map<long, bool> changeSignFlagByID;
 	};
 }
 

@@ -41,10 +41,10 @@
 #include <set>
 #include <string>
 #include <vector>
-#include <boost/unordered_map.hpp>
-#include <boost/array.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/format.hpp>
+//#include <boost/unordered_map.hpp>
+//#include <boost/array.hpp>
+//#include <boost/lexical_cast.hpp>
+//#include <boost/format.hpp>
 #include "Interpolator.h"
 #include "Model.h"
 #include "GeneralFileReader.h"
@@ -54,6 +54,7 @@
 #include <iostream>
 #include "CCMCTime.h"
 #include "Tracer.h"
+#include <unordered_map>
 
 
 //cdf constants
@@ -148,18 +149,18 @@ namespace ccmc
 
 		private:
 
-			boost::unordered_map<std::string, std::string> variableNativeUnits;
-			boost::unordered_map<std::string, std::string> variableSIUnits;
-			boost::unordered_map<std::string, std::string> variableVisUnits;
+			std::unordered_map<std::string, std::string> variableNativeUnits;
+			std::unordered_map<std::string, std::string> variableSIUnits;
+			std::unordered_map<std::string, std::string> variableVisUnits;
 
-			boost::unordered_map<std::string, float> conversionFactorsToSI;
+			std::unordered_map<std::string, float> conversionFactorsToSI;
 
 
-			boost::unordered_map<std::string, std::string> variableAliases;
-			boost::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForComponents;
-			boost::unordered_map<std::string, std::vector<long> > listOfRequiredVariablesForComponentsByID;
-			boost::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForVectors;
-			boost::unordered_map<std::string, std::vector<long> > listOfRequiredVariablesForVectorsByID;
+			std::unordered_map<std::string, std::string> variableAliases;
+			std::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForComponents;
+			std::unordered_map<std::string, std::vector<long> > listOfRequiredVariablesForComponentsByID;
+			std::unordered_map<std::string, std::vector<std::string> > listOfRequiredVariablesForVectors;
+			std::unordered_map<std::string, std::vector<long> > listOfRequiredVariablesForVectorsByID;
 
 
 			void clearMaps();
@@ -193,11 +194,11 @@ namespace ccmc
 
 
 	};
-	static boost::unordered_map<int, ccmc::Kameleon *> kameleonObjects;
-	static boost::unordered_map<int, ccmc::Tracer *> tracerObjects;
-	static boost::unordered_map<int, ccmc::Interpolator *> interpolatorObjects;
-	static boost::unordered_map<int, ccmc::GeneralFileReader *> generalFileReaderObjects;
-	static boost::unordered_map<int, ccmc::TimeInterpolator *> timeInterpolatorObjects;
+	static std::unordered_map<int, ccmc::Kameleon *> kameleonObjects;
+	static std::unordered_map<int, ccmc::Tracer *> tracerObjects;
+	static std::unordered_map<int, ccmc::Interpolator *> interpolatorObjects;
+	static std::unordered_map<int, ccmc::GeneralFileReader *> generalFileReaderObjects;
+	static std::unordered_map<int, ccmc::TimeInterpolator *> timeInterpolatorObjects;
 
 }
 

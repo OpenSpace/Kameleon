@@ -16,6 +16,24 @@
 #include <algorithm>
 #include <boost/functional/hash.hpp>
 
+namespace std {
+	std::size_t hash<ccmc::Time>::operator()(const ccmc::Time& t) const noexcept {
+		std::size_t seed = 0;
+		boost::hash_combine(seed, t.getYear());
+		boost::hash_combine(seed, t.getMonth());
+		boost::hash_combine(seed, t.getDay());
+		boost::hash_combine(seed, t.getHour());
+		boost::hash_combine(seed, t.getMinute());
+		boost::hash_combine(seed, t.getSeconds());
+		boost::hash_combine(seed, t.getMilliseconds());
+		//boost::hash_combine(seed, tod.hours());
+		//boost::hash_combine(seed, tod.minutes());
+		//boost::hash_combine(seed, tod.seconds());
+		//boost::hash_combine(seed, tod.fractional_seconds());
+		return seed;
+	}
+}
+
 using namespace ccmc;
 namespace boost
 {

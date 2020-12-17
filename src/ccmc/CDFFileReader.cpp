@@ -544,7 +544,7 @@ namespace ccmc
 	Attribute CDFFileReader::getGlobalAttribute(long i)
 	{
 
-		boost::unordered_map<long, Attribute>::iterator iter = gAttributeByID.find(i);
+		std::unordered_map<long, Attribute>::iterator iter = gAttributeByID.find(i);
 		if (iter != gAttributeByID.end())
 			return (*iter).second;
 
@@ -652,7 +652,7 @@ namespace ccmc
 	Attribute CDFFileReader::getGlobalAttribute(const std::string& attribute)
 	{
 		//first, check if the attribute has already been requested. If so, return stored value
-		boost::unordered_map<std::string, Attribute>::iterator iter = gAttributes.find(attribute);
+		std::unordered_map<std::string, Attribute>::iterator iter = gAttributes.find(attribute);
 		if (iter != gAttributes.end())
 			return (*iter).second;
 
@@ -693,11 +693,11 @@ namespace ccmc
 
 
 		//first, check the vAttributes map
-		boost::unordered_map<std::string, boost::unordered_map< std::string, Attribute> >::iterator iter =
+		std::unordered_map<std::string, std::unordered_map< std::string, Attribute> >::iterator iter =
 				vAttributes.find(variable);
 		if (iter != vAttributes.end())
 		{
-			boost::unordered_map< std::string, Attribute>::iterator iter2 = vAttributes[variable].find(vattribute);
+			std::unordered_map< std::string, Attribute>::iterator iter2 = vAttributes[variable].find(vattribute);
 			if (iter2 != vAttributes[variable].end())
 			{
 				return (*iter2).second;
@@ -777,7 +777,7 @@ namespace ccmc
 //			exists = true;
 //
 //		return exists;
-		boost::unordered_map<std::string, Attribute>::iterator iter = this->gAttributes.find(attribute);
+		std::unordered_map<std::string, Attribute>::iterator iter = this->gAttributes.find(attribute);
 		if (iter != gAttributes.end())
 			return true;
 		else
@@ -795,7 +795,7 @@ namespace ccmc
 		if (status == CDF_OK)
 			exists = true;
 */
-		boost::unordered_map<long, Attribute>::iterator iter = gAttributeByID.find(attribute);
+		std::unordered_map<long, Attribute>::iterator iter = gAttributeByID.find(attribute);
 		if (iter != gAttributeByID.end())
 			return true;
 		else
@@ -811,7 +811,7 @@ namespace ccmc
 	long CDFFileReader::getVariableID(const std::string& variable)
 	{
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
+		std::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
 
 		if (iter != variableIDs.end())
 			return (*iter).second;
@@ -837,7 +837,7 @@ namespace ccmc
 	std::string CDFFileReader::getVariableName(long variable_id)
 	{
 		//first, check the current variableNames map.  fetching the variableNames from the file is expensive
-		boost::unordered_map<long, std::string>::iterator iter = variableNames.find(variable_id);
+		std::unordered_map<long, std::string>::iterator iter = variableNames.find(variable_id);
 		if (iter != variableNames.end())
 			return (*iter).second;
 		return "";
@@ -862,7 +862,7 @@ namespace ccmc
 	{
 
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
+		std::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
 		if (iter != variableIDs.end())
 			return true;
 
@@ -887,7 +887,7 @@ namespace ccmc
 	{
 
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<long, std::string>::iterator iter = variableNames.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = variableNames.find(variable);
 		if (iter != variableNames.end())
 			return true;
 

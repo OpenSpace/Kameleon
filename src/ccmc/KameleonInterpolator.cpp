@@ -296,7 +296,7 @@ namespace ccmc
 	 */
 	float KameleonInterpolator::getConversionFactorToVis(const std::string& variable)
 	{
-		boost::unordered_map<std::string, float>::iterator iter = conversionFactorsToVis.find(variable);
+		std::unordered_map<std::string, float>::iterator iter = conversionFactorsToVis.find(variable);
 
 		if (iter != conversionFactorsToVis.end())
 			return (*iter).second;

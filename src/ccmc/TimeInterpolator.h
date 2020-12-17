@@ -8,11 +8,17 @@
 #ifndef TIMEINTERPOLATOR_H_
 #define TIMEINTERPOLATOR_H_
 
-#include <boost/unordered_map.hpp>
 #include <vector>
 #include "Kameleon.h"
 #include "Interpolator.h"
 #include "CCMCTime.h"
+
+namespace std {
+	template <>
+	struct hash<ccmc::Time> {
+		std::size_t operator()(const ccmc::Time& t) const noexcept;
+	};
+}
 
 namespace ccmc
 {
@@ -45,9 +51,9 @@ namespace ccmc
 
 		private:
 			std::vector<Time> timesteps;
-			boost::unordered_map<Time, const std::string> timesteps_map;
-			boost::unordered_map<Time, Kameleon *> current_kameleon_files;
-			boost::unordered_map<Time, Interpolator *> current_kameleon_interpolators;
+			std::unordered_map<Time, const std::string> timesteps_map;
+			std::unordered_map<Time, Kameleon *> current_kameleon_files;
+			std::unordered_map<Time, Interpolator *> current_kameleon_interpolators;
 			bool isSorted;
 
 			void manageVariables(const std::vector<std::string>& variables, Kameleon* a);

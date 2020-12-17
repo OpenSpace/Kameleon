@@ -35,8 +35,8 @@ namespace ccmc
 
 		private:
 			Model * modelReader;
-			boost::unordered_map<std::string, float> conversionFactors;
-			boost::unordered_map<long, float> conversionFactorsByID;
+			std::unordered_map<std::string, float> conversionFactors;
+			std::unordered_map<long, float> conversionFactorsByID;
 
 
 //			int nx;

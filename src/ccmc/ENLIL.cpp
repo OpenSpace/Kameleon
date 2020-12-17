@@ -117,7 +117,7 @@ namespace ccmc
 
 	bool ENLIL::getChangeSignFlag(std::string variable)
 	{
-		boost::unordered_map<std::string, bool>::iterator iter = this->changeSignFlag.find(variable);
+		std::unordered_map<std::string, bool>::iterator iter = this->changeSignFlag.find(variable);
 		if (iter != changeSignFlag.end())
 			return (*iter).second;
 		else
@@ -127,7 +127,7 @@ namespace ccmc
 
 	bool ENLIL::getChangeSignFlagByID(long variable_id)
 	{
-		boost::unordered_map<long, bool>::iterator iter = this->changeSignFlagByID.find(variable_id);
+		std::unordered_map<long, bool>::iterator iter = this->changeSignFlagByID.find(variable_id);
 		if (iter != changeSignFlagByID.end())
 			return (*iter).second;
 		else

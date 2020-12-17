@@ -412,7 +412,7 @@ namespace ccmc
 	float OpenGGCMInterpolator::getConversionFactor(const std::string& variable)
 	{
 		float conversionFactor = 1.0f;
-		boost::unordered_map<std::string, float>::iterator cf = conversionFactors.find(variable);
+		std::unordered_map<std::string, float>::iterator cf = conversionFactors.find(variable);
 
 		if (cf != conversionFactors.end())
 			conversionFactor = (*cf).second;
@@ -426,7 +426,7 @@ namespace ccmc
 	float OpenGGCMInterpolator::getConversionFactor(const long& variable_id)
 	{
 		float conversionFactor = 1.0f;
-		boost::unordered_map<long, float>::iterator cf = conversionFactorsByID.find(variable_id);
+		std::unordered_map<long, float>::iterator cf = conversionFactorsByID.find(variable_id);
 
 		if (cf != conversionFactorsByID.end())
 			conversionFactor = (*cf).second;

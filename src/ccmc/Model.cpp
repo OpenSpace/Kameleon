@@ -55,7 +55,7 @@ namespace ccmc
 
 		if (variableData.size() > 0)
 		{
-			boost::unordered_map<std::string, std::vector<float>*>::iterator iter;
+			std::unordered_map<std::string, std::vector<float>*>::iterator iter;
 
 			for ( iter=variableData.begin() ; iter != variableData.end(); iter++ )
 			{
@@ -65,7 +65,7 @@ namespace ccmc
 
 		if (variableDataInt.size() > 0)
 		{
-			boost::unordered_map<std::string, std::vector<int>*>::iterator iter;
+			std::unordered_map<std::string, std::vector<int>*>::iterator iter;
 
 			for (iter=variableDataInt.begin(); iter != variableDataInt.end(); iter++)
 			{
@@ -215,7 +215,7 @@ namespace ccmc
 	 */
 	std::vector<float>* Model::getVariableFromMapRW(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::vector<float>*>::iterator iter = variableData.find(variable);
+		std::unordered_map<std::string, std::vector<float>*>::iterator iter = variableData.find(variable);
 
 		std::vector<float>* vData = NULL;
 		if (iter != variableData.end())
@@ -251,7 +251,7 @@ namespace ccmc
 	 */
 	const std::vector<std::string> Model::getLoadedVariables()
 	{
-		boost::unordered_map<std::string, std::vector<float>*>::iterator iter;
+		std::unordered_map<std::string, std::vector<float>*>::iterator iter;
 
 		std::vector<std::string> variablesLoaded;
 		for ( iter=variableData.begin() ; iter != variableData.end(); iter++ )
@@ -278,7 +278,7 @@ namespace ccmc
 	 */
 	std::vector<int>* Model::getIntVariableFromMapRW(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::vector<int>*>::iterator iter = variableDataInt.find(variable);
+		std::unordered_map<std::string, std::vector<int>*>::iterator iter = variableDataInt.find(variable);
 
 		std::vector<int>* vData = NULL;
 		if (iter != variableDataInt.end())
@@ -317,7 +317,7 @@ namespace ccmc
 	 */
 	std::vector<float>* Model::getVariableFromMapRW(long variable_id)
 	{
-		boost::unordered_map<long, std::vector<float>*>::iterator iter = variableDataByID.find(variable_id);
+		std::unordered_map<long, std::vector<float>*>::iterator iter = variableDataByID.find(variable_id);
 
 		std::vector<float>* vData = NULL;
 		if (iter != variableDataByID.end())
@@ -357,7 +357,7 @@ namespace ccmc
 	 */
 	std::vector<int>* Model::getIntVariableFromMapRW(long variable_id)
 	{
-		boost::unordered_map<long, std::vector<int>*>::iterator iter = variableDataIntByID.find(variable_id);
+		std::unordered_map<long, std::vector<int>*>::iterator iter = variableDataIntByID.find(variable_id);
 
 		std::vector<int>* vData = NULL;
 		if (iter != variableDataIntByID.end())
@@ -389,7 +389,7 @@ namespace ccmc
 	 */
 	float Model::getConversionFactorToSI(const std::string& variable)
 	{
-		boost::unordered_map<std::string, float>::iterator iter = conversionFactorsToSI.find(variable);
+		std::unordered_map<std::string, float>::iterator iter = conversionFactorsToSI.find(variable);
 
 		if (iter != conversionFactorsToSI.end())
 			return (*iter).second;
@@ -420,7 +420,7 @@ namespace ccmc
 	{
 		std::string unit = "";
 
-		boost::unordered_map<std::string, std::string>::iterator iter = variableSIUnits.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = variableSIUnits.find(variable);
 		if (iter != variableSIUnits.end())
 			unit = (*iter).second;
 		return unit;
@@ -434,7 +434,7 @@ namespace ccmc
 		//TODO: delete contents of the maps and clear them
 		if (variableData.size() > 0)
 		{
-			boost::unordered_map<std::string, std::vector<float>*>::iterator iter;
+			std::unordered_map<std::string, std::vector<float>*>::iterator iter;
 
 			for ( iter=variableData.begin() ; iter != variableData.end(); iter++ )
 			{
@@ -444,7 +444,7 @@ namespace ccmc
 
 		if (variableDataInt.size() > 0)
 		{
-			boost::unordered_map<std::string, std::vector<int>*>::iterator iter;
+			std::unordered_map<std::string, std::vector<int>*>::iterator iter;
 
 			for (iter=variableDataInt.begin(); iter != variableDataInt.end(); iter++)
 			{

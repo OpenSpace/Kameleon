@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <unordered_map>
 #include "Attribute.h"
-#include <boost/unordered_map.hpp>
 #include "cdf.h"
 
 
@@ -86,11 +86,11 @@ namespace ccmc
 			int numVAttributes;
 
 
-			boost::unordered_map<std::string, long> variableIDs;
-			boost::unordered_map<long, std::string> variableNames;
-			boost::unordered_map<std::string, Attribute> gAttributes;
-			boost::unordered_map<long, Attribute> gAttributeByID;
-			boost::unordered_map<std::string, boost::unordered_map<std::string, Attribute> > vAttributes;
+			std::unordered_map<std::string, long> variableIDs;
+			std::unordered_map<long, std::string> variableNames;
+			std::unordered_map<std::string, Attribute> gAttributes;
+			std::unordered_map<long, Attribute> gAttributeByID;
+			std::unordered_map<std::string, std::unordered_map<std::string, Attribute> > vAttributes;
 			void initializeGlobalAttributes();
 			void initializeVariableAttributes();
 
