@@ -3,8 +3,8 @@
 #########################################################################################
 
 # top level CMakeLists.txt (kameleon-plus/)
-cmake_minimum_required (VERSION 2.8) 
-project (Kameleon)
+cmake_minimum_required(VERSION 2.8) 
+project(Kameleon)
 
 # Use <PackageName>_ROOT variables
 # https://cmake.org/cmake/help/git-stage/policy/CMP0074.html
@@ -58,42 +58,42 @@ set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${Boost_LIBRARIES})
 
 # HDF5
 find_package(HDF5 COMPONENTS C CXX)
-if(KAMELEON_USE_HDF5)
-	if(HDF5_FOUND)
-		message(STATUS "HDF5 Found: Building Kameleon with HDF 5")
-		add_definitions(-DHAVE_HDF5)
-		set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${HDF5_LIBRARIES})
-	else(HDF5_FOUND)
-		message(STATUS "Buildning HDF5 locally")
-		set(HDF5_ROOT ${KAMELEON_EXT_DIR}/hdf5/hdf5-1.8.12)
-		set(HDF5_EXTERNALLY_CONFIGURED 1)
-		set(HDF5_BUILD_CPP_LIB ON CACHE BOOL "Build HDF5 C++ Library" FORCE)
-		add_subdirectory(${HDF5_ROOT})
-		set(HDF5_INCLUDE_DIR ${HDF5_ROOT} ${HDF5_ROOT}/src ${HDF5_ROOT}/c++/src)
-		SET(HDF5_LIBRARIES hdf5)
-		SET(HDF5_LIBRARIES hdf5_cpp)
-		set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${HDF5_LIBRARIES})
-	endif(HDF5_FOUND)
-else()
-	message(STATUS "Not Building HDF5 - CDF files only supported")
-endif(KAMELEON_USE_HDF5)
+if (KAMELEON_USE_HDF5)
+  if (HDF5_FOUND)
+    message(STATUS "HDF5 Found: Building Kameleon with HDF 5")
+    add_definitions(-DHAVE_HDF5)
+    set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${HDF5_LIBRARIES})
+  else ()
+    message(STATUS "Building HDF5 locally")
+    set(HDF5_ROOT ${KAMELEON_EXT_DIR}/hdf5/hdf5-1.8.12)
+    set(HDF5_EXTERNALLY_CONFIGURED 1)
+    set(HDF5_BUILD_CPP_LIB ON CACHE BOOL "Build HDF5 C++ Library" FORCE)
+    add_subdirectory(${HDF5_ROOT})
+    set(HDF5_INCLUDE_DIR ${HDF5_ROOT} ${HDF5_ROOT}/src ${HDF5_ROOT}/c++/src)
+    set(HDF5_LIBRARIES hdf5)
+    set(HDF5_LIBRARIES hdf5_cpp)
+    set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${HDF5_LIBRARIES})
+  endif ()
+else ()
+  message(STATUS "Not Building HDF5 - CDF files only supported")
+endif ()
 
 # CDF
 find_package(CDF)
-if(NOT CDF_FOUND)
-	message(STATUS "Buildning CDF locally")
-	add_subdirectory(${KAMELEON_EXT_DIR}/cdf)
-endif(NOT CDF_FOUND)
+if (NOT CDF_FOUND)
+  message(STATUS "Building CDF locally")
+  add_subdirectory(${KAMELEON_EXT_DIR}/cdf)
+endif ()
 set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${CDF_LIBRARIES})
 
 #########################################################################################
 # Configuration
 #########################################################################################
-configure_file (
-	${PROJECT_SOURCE_DIR}/kameleon-plus-Config.h.in
-	${PROJECT_SOURCE_DIR}/src/ccmc/Kameleon-plus-Config.h
+configure_file(
+  ${PROJECT_SOURCE_DIR}/kameleon-plus-Config.h.in
+  ${PROJECT_SOURCE_DIR}/src/ccmc/Kameleon-plus-Config.h
 )
-include_directories("${PROJECT_SOURCE_DIR}")
+# include_directories("${PROJECT_SOURCE_DIR}")
 
 #########################################################################################
 # Executable
@@ -107,7 +107,7 @@ add_subdirectory(${CCMC_ROOT_DIR})
 #########################################################################################
 set(KAMELEON_EXAMPLES_DIR "${PROJECT_SOURCE_DIR}/examples")
 set(EXAMPLES_ROOT_DIR "${KAMELEON_BASE_DIR}/src/example/c++")
-if(NOT KAMELEON_LIBRARY_ONLY)
-	add_subdirectory(${EXAMPLES_ROOT_DIR})
-endif(NOT KAMELEON_LIBRARY_ONLY)
+if (NOT KAMELEON_LIBRARY_ONLY)
+  add_subdirectory(${EXAMPLES_ROOT_DIR})
+endif ()
 
