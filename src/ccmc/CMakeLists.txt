@@ -17,6 +17,9 @@ set(ALL_SOURCE ${CCMC_SOURCE})
 set(ALL_HEADER ${CCMC_HEADER})
 
 add_library(ccmc ${ALL_SOURCE} ${ALL_HEADER})
+if (WIN32)
+    target_compile_options(ccmc PRIVATE /MP)
+endif ()
 
 # Boost
 if(Boost_FOUND)
