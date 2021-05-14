@@ -86,6 +86,8 @@ namespace ccmc
 		std::vector<std::string> b1names;
 		std::vector<std::string> b_1names;
 		std::vector<std::string> unames;
+        //TODO: add u_perp_b for spherical coords
+        std::vector<std::string> u_perp_bnames;
 		std::vector<std::string> jnames;
 		std::vector<std::string> jxbnames;
 		std::vector<std::string> exbnames;
@@ -442,7 +444,7 @@ namespace ccmc
 		Fieldline f;
 		std::string model_name = kameleon->getModelName();
 		//model_name = derived.getGlobalAttributeString("model_name");
-//		Interpolator * interpolator = kameleon->createNewInterpolator(); //A. Pembroke removed
+        //Interpolator * interpolator = kameleon->createNewInterpolator(); //A. Pembroke removed
 		if (model_name == ccmc::strings::models::open_ggcm_ ||
 				model_name == ccmc::strings::models::ucla_ggcm_ ||
 				model_name == ccmc::strings::models::batsrus_ ||
@@ -912,8 +914,6 @@ namespace ccmc
 
 			//		if (dt < .01)
 			//			dt = .01;
-
-
 
 			Point3f k1 = getVector(variable, previous, dComponent1, dComponent2, dComponent3, interpolator);
 			k1.normalize();
@@ -1991,7 +1991,67 @@ namespace ccmc
 								position.component1, position.component2, position.component3, dComponent1, dComponent2,
 								dComponent3) * bp;
 
-		} else
+		} 
+        
+        else if (variable == "u_perp_b" )
+        {
+            //get vector values for u and b to compute the u component that is perpendicular to b. 
+            Point3f vectorValue_b;
+            Point3f vectorValue_u;
+
+            //vector components for b
+            vectorValue_b.component1 = ((Interpolator*)(interpolator))->interpolate("bx",
+                position.component1, position.component2, position.component3, dComponent1, dComponent2, dComponent3);
+
+
+            if (vectorValue_b.component1 == missing)
+            {
+                vectorValue_b.component2 = missing;
+                vectorValue_b.component3 = missing;
+            }
+            else
+            {
+
+                vectorValue_b.component2 = ((Interpolator*)(interpolator))->interpolate("by",
+                    position.component1, position.component2, position.component3, dComponent1, dComponent2,
+                    dComponent3);
+
+                vectorValue_b.component3 = ((Interpolator*)(interpolator))->interpolate("bz",
+                    position.component1, position.component2, position.component3, dComponent1, dComponent2,
+                    dComponent3);
+            }
+
+            //vector components for u
+            vectorValue_u.component1 = ((Interpolator*)(interpolator))->interpolate("ux",
+                position.component1, position.component2, position.component3, dComponent1, dComponent2, dComponent3);
+
+
+            if (vectorValue_u.component1 == missing)
+            {
+                vectorValue_u.component2 = missing;
+                vectorValue_u.component3 = missing;
+            }
+            else
+            {
+
+                vectorValue_u.component2 = ((Interpolator*)(interpolator))->interpolate("uy",
+                    position.component1, position.component2, position.component3, dComponent1, dComponent2,
+                    dComponent3);
+
+                vectorValue_u.component3 = ((Interpolator*)(interpolator))->interpolate("uz",
+                    position.component1, position.component2, position.component3, dComponent1, dComponent2,
+                    dComponent3);
+            }
+
+            //compute u_perp_b
+            vectorValue_b.normalize();
+            float u_dot_b = (vectorValue_u.component1 * vectorValue_b.component1 +
+                vectorValue_u.component2 * vectorValue_b.component2 +
+                vectorValue_u.component3 * vectorValue_b.component3);
+
+            vectorValue = vectorValue_u - (vectorValue_b * u_dot_b);
+
+        } else
 		{
 			vectorValue.component1 = ((Interpolator*) (interpolator))->interpolate(((*iter).second)[0],
 					position.component1, position.component2, position.component3, dComponent1, dComponent2, dComponent3);
