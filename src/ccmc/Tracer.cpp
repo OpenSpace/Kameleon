@@ -190,6 +190,8 @@ namespace ccmc
 			componentNamesMap["uy"] = unames;
 			componentNamesMap["uz"] = unames;
 
+            componentNamesMap["u_perp_b"] = unames;
+
 			componentNamesMap["j"] = jnames;
 			componentNamesMap["jx"] = jnames;
 			componentNamesMap["jy"] = jnames;
@@ -954,7 +956,7 @@ namespace ccmc
 					finished = true;
 				}
 				oldPoint = previous;
-				//	 newPointData;
+				//	newPointData;
 				//	newPointData.setPosition(newPoint);
 				iterations++;
 				if (iterations > step_max)
