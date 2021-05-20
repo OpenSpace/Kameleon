@@ -48,17 +48,15 @@ namespace ccmc
 			std::cerr << "Filename: \"" << filename << "\" does not exist." << std::endl;
 		}
 		else{
-//			std::cerr << "about to open CDF file" << std::endl;
-
+            // std::cerr << "about to open CDF file" << std::endl;
 			status = CDFopenCDF((char *)filename.c_str(), &current_file_id);
-
 
 			if (status == CDF_OK)
 			{
 				long readOnlyMode = READONLYon;
 				CDFsetReadOnlyMode(current_file_id, readOnlyMode);
 
-				//check if this is a valid Kameleon converted file
+				// check if this is a valid Kameleon converted file
 
 				current_filename = filename;
 				long num_attributes;
@@ -81,8 +79,8 @@ namespace ccmc
 			}
 
 		}
-		//cout << "current_file_id: " << current_file_id << endl;
-		//cout << "testing open in FileReader class" << endl;
+		// cout << "current_file_id: " << current_file_id << endl;
+		// cout << "testing open in FileReader class" << endl;
 
 		return status;
 	}
