@@ -57,7 +57,8 @@ namespace ccmc
 		values.push_back(d);
 	}
 
-	void Fieldline::insertVectorData(const Point3f& vector) //vectorValue must match positions
+    //vectorValue must match positions
+	void Fieldline::insertVectorData(const Point3f& vector) 
 	{
 		vectorValues.push_back(vector);
 	}
@@ -288,7 +289,8 @@ namespace ccmc
 
 		if ((elements.size() != 0) && (vectorValues.size() == elements.size()+1))
 		{
-//			std::cout<<"integrating vectors along fieldline. Number of elements:"<<elements.size()<<"\n";
+			//std::cout<<"integrating vectors along fieldline. Number of elements:"
+            //<<elements.size()<<"\n";
 			for (int i = 0; i < elements.size(); i++)
 			{
 				Point3f vAverage = (vectorValues[i] + vectorValues[i+1])*.5;
@@ -297,11 +299,12 @@ namespace ccmc
 						elements[i].component3 * vAverage.component3;
 				vectorIntegral.push_back(integrand);
 			}
-//			std::cout<<"done with vector integration.\n";
+			//std::cout<<"done with vector integration.\n";
 		}
-		else{
-			std::cout<<"vectors and elements don't match; elements must be 1 less than vectors\n" 
-			<< "size of elements:" << elements.size() << "vectors:"<< vectorValues.size() << std::endl;
+		else {
+			std::cout<<"vectors and elements don't match; elements must be 1 less"
+                << "than vectors\n size of elements:" 
+                << elements.size() << "vectors:"<< vectorValues.size() << std::endl;
 		}
 		return vectorIntegral;
 
@@ -330,7 +333,7 @@ namespace ccmc
 		length.push_back(0);
 		for (int i = 0; i < size-1; i++)
 		{
-		length.push_back(elementsMagnitudes[i]+length[i]);
+		    length.push_back(elementsMagnitudes[i]+length[i]);
 		}
 		return length;
 
@@ -352,10 +355,10 @@ namespace ccmc
 	{
 		// Field line will be interpolated to fixed number given by Npoints
 		/*
-		 * If Npoints = 3, then the first and third interpolated points (and corresponding
-		 *  data) will be set equal to the first and last points of the original field line,
-		 *  and the second point will correspond to the "half-way" mark along the field line as
-		 *  determined by the following weighting scheme
+		 * If Npoints = 3, then the first and third interpolated points 
+         * (and corresponding data) will be set equal to the first and last points of the 
+         * original field line, and the second point will correspond to the "half-way" 
+         * mark along the field line as determined by the following weighting scheme
 		 *  	option=1: interpolate to fixed arc length
 		 *  	option=2: interpolate to fixed integral
 		 *  	option=3: interpolate to fixed index space
@@ -432,22 +435,28 @@ namespace ccmc
 				std::cout<<"interpolation option not supported";
 			}
 
-			if ((ts > ta)&&(ts <= tb)) // interpolating parameter between current and next points of original field line
-			{
-             float dt = tb-ta; // get size of parametric field line step
-             float tloc = (ts-ta)/dt; // get local interpolation step (0,1)
-             // linear interpolation
-             float value = values[flinedex]*(1-tloc)+values[flinedex+1]*(tloc); //interpolate data
-             Point3f point = getPositions()[flinedex]*(1-tloc)+getPositions()[flinedex+1]*tloc; //interpolate positions
-             interpolated.insertPointData(point, value);
-             interpolated.nearest.push_back(flinedex); //save closest point
-             interpolated.tlocal.push_back(tloc); //save tlocal
-             n = n+1.0;
-				// std::cout<<"ta, tb, ts "<<ta<<", "<<tb<<" "<<ts<<" n = "<<n<<"\n";
+            // interpolating parameter between current and next points of 
+            // original field line
+			if ((ts > ta)&&(ts <= tb)) 			{
+                float dt = tb-ta; // get size of parametric field line step
+                float tloc = (ts-ta)/dt; // get local interpolation step (0,1)
+                // linear interpolation
+                // interpolate data
+                float value = values[flinedex]*(1-tloc)+values[flinedex+1]*(tloc); 
+                //interpolate positions
+                Point3f point = getPositions()[flinedex]*(1-tloc)
+                                +getPositions()[flinedex+1]*tloc; 
+                interpolated.insertPointData(point, value);
+                interpolated.nearest.push_back(flinedex); //save closest point
+                interpolated.tlocal.push_back(tloc); //save tlocal
+                n = n+1.0;
+			    // std::cout<<"ta, tb, ts "<<ta<<", "<<tb<<" "<<ts<<" n = "<<n<<"\n";
 			}
 			else
 			{
-             flinedex++; //interpolant not between current and next points of original field line, increment
+                //interpolant not between current and next points 
+                //of original field line, increment
+                ++flinedex; 
 			}
 		} // End loop
 
@@ -455,6 +464,7 @@ namespace ccmc
 		interpolated.insertPointData(positions[size-1], values[size-1]);
 		interpolated.nearest.push_back(size-1);
 		interpolated.tlocal.push_back(1.0);
+
 		return interpolated;
 	}
 
@@ -538,43 +548,41 @@ namespace ccmc
 
 		for (int i = 1; i < size-1; i++) // interior domain of fieldline
 		{
-            if ((values[i] < values[i-1])&&(values[i] < values[i+1])) // i is a local minimum
-               {
-                 mincount ++;
-                 minima.push_back(i); // store index
-                 if (values[i] < globmin)
-                 {
-                	 GlobMinIndex = mincount-1;
-                 }
+            // i is a local minimum
+            if ((values[i] < values[i-1])&&(values[i] < values[i+1])) 
+            {
+                mincount ++;
+                minima.push_back(i); // store index
+                if (values[i] < globmin)
+                {
+                	GlobMinIndex = mincount-1;
                 }
-            if ((values[i] > values[i-1])&&(values[i] > values[i+1])) // i is a local maximum
-               {
-                 maxcount ++;
-                 maxima.push_back(i);
-                 if (values[i] > globmax)
-                 {
+            }
+            // i is a local maximum
+            if ((values[i] > values[i-1])&&(values[i] > values[i+1])) 
+            {
+                maxcount ++;
+                maxima.push_back(i);
+                if (values[i] > globmax)
+                {
                     GlobMaxIndex = maxcount-1;
-                 }
+                }
 
-               }
+            }
 		}
 		// ToDO: Need to check endpoint for global max/min?
 		// check properties of last endpoint
-                if (values[size-1] >= values[size-2])
-                {
-                        maxima.push_back(size-1);
-                        maxcount ++;
-                        std::cout <<"max encountered at last point\n";
-                }
-                if (values[size-1] <= values[size-2])
-                {
-                        minima.push_back(size-1);
-                        mincount ++;
-                        std::cout<<"min encountered at last point\n";
-                }
-
-
+        if (values[size-1] >= values[size-2])
+        {
+            maxima.push_back(size-1);
+            maxcount ++;
+            std::cout <<"max encountered at last point\n";
+        }
+        if (values[size-1] <= values[size-2])
+        {
+            minima.push_back(size-1);
+            mincount ++;
+            std::cout<<"min encountered at last point\n";
+        }
 	}
-
-
 }
