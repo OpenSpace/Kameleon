@@ -446,6 +446,9 @@ namespace ccmc
                 //interpolate positions
                 Point3f point = getPositions()[flinedex]*(1-tloc)
                                 +getPositions()[flinedex+1]*tloc; 
+                if (point.magnitude() < 0 || point.magnitude() == NAN) {
+                    std::cout << "knas\n" << point << "\n";
+                }
                 interpolated.insertPointData(point, value);
                 interpolated.nearest.push_back(flinedex); //save closest point
                 interpolated.tlocal.push_back(tloc); //save tlocal
