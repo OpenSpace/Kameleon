@@ -187,6 +187,8 @@ namespace ccmc
 			componentNamesMap["ux"] = unames;
 			componentNamesMap["uy"] = unames;
 			componentNamesMap["uz"] = unames;
+            // u_perp_b is for the part of u that is perpendicular to b.
+            componentNamesMap["u_perp_b"] = unames;
 
 			componentNamesMap["j"] = jnames;
 			componentNamesMap["jx"] = jnames;
@@ -1991,8 +1993,96 @@ namespace ccmc
 								position.component1, position.component2, position.component3, dComponent1, dComponent2,
 								dComponent3) * bp;
 
-		} else
-		{
+		} 
+        else if (variable == "u_perp_b") { //For u_perp_b both b and u needs to be used
+            // get vector values for u and b to compute the u component that is
+            // perpendicular to b. 
+            Point3f vectorValue_b;
+            Point3f vectorValue_u;
+
+            //vector components for b
+            vectorValue_b.component1 = ((Interpolator*)(interpolator))->interpolate(
+                "bx",
+                position.component1,
+                position.component2,
+                position.component3,
+                dComponent1,
+                dComponent2,
+                dComponent3
+            );
+            // Small check
+            if (vectorValue_b.component1 == missing) {
+                vectorValue_b.component2 = missing;
+                vectorValue_b.component3 = missing;
+            }
+            else {
+                vectorValue_b.component2 = ((Interpolator*)(interpolator))->interpolate(
+                    "by",
+                    position.component1,
+                    position.component2,
+                    position.component3,
+                    dComponent1,
+                    dComponent2,
+                    dComponent3
+                );
+                vectorValue_b.component3 = ((Interpolator*)(interpolator))->interpolate(
+                    "bz",
+                    position.component1,
+                    position.component2,
+                    position.component3,
+                    dComponent1,
+                    dComponent2,
+                    dComponent3
+                );
+            }
+
+            //vector components for u
+            vectorValue_u.component1 = ((Interpolator*)(interpolator))->interpolate(
+                "ux",
+                position.component1,
+                position.component2,
+                position.component3,
+                dComponent1,
+                dComponent2,
+                dComponent3
+            );
+
+            if (vectorValue_u.component1 == missing) {
+                vectorValue_u.component2 = missing;
+                vectorValue_u.component3 = missing;
+            }
+            else {
+                vectorValue_u.component2 = ((Interpolator*)(interpolator))->interpolate(
+                    "uy",
+                    position.component1,
+                    position.component2,
+                    position.component3,
+                    dComponent1,
+                    dComponent2,
+                    dComponent3
+                );
+
+                vectorValue_u.component3 = ((Interpolator*)(interpolator))->interpolate(
+                    "uz",
+                    position.component1,
+                    position.component2,
+                    position.component3,
+                    dComponent1,
+                    dComponent2,
+                    dComponent3
+                );
+            }
+
+            //compute u_perp_b
+            vectorValue_b.normalize();
+            float u_dot_b = (
+                vectorValue_u.component1 * vectorValue_b.component1 +
+                vectorValue_u.component2 * vectorValue_b.component2 +
+                vectorValue_u.component3 * vectorValue_b.component3
+            );
+            vectorValue = vectorValue_u - (vectorValue_b * u_dot_b);
+        }
+        else {
 			vectorValue.component1 = ((Interpolator*) (interpolator))->interpolate(((*iter).second)[0],
 					position.component1, position.component2, position.component3, dComponent1, dComponent2, dComponent3);
 
