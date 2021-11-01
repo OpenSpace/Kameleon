@@ -86,6 +86,8 @@ namespace ccmc
 		std::vector<std::string> b1names;
 		std::vector<std::string> b_1names;
 		std::vector<std::string> unames;
+        //TODO: add u_perp_b for spherical coords
+        std::vector<std::string> u_perp_bnames;
 		std::vector<std::string> jnames;
 		std::vector<std::string> jxbnames;
 		std::vector<std::string> exbnames;
@@ -188,6 +190,8 @@ namespace ccmc
 			componentNamesMap["uy"] = unames;
 			componentNamesMap["uz"] = unames;
             // u_perp_b is for the part of u that is perpendicular to b.
+            componentNamesMap["u_perp_b"] = unames;
+
             componentNamesMap["u_perp_b"] = unames;
 
 			componentNamesMap["j"] = jnames;
@@ -444,7 +448,7 @@ namespace ccmc
 		Fieldline f;
 		std::string model_name = kameleon->getModelName();
 		//model_name = derived.getGlobalAttributeString("model_name");
-//		Interpolator * interpolator = kameleon->createNewInterpolator(); //A. Pembroke removed
+        //Interpolator * interpolator = kameleon->createNewInterpolator(); //A. Pembroke removed
 		if (model_name == ccmc::strings::models::open_ggcm_ ||
 				model_name == ccmc::strings::models::ucla_ggcm_ ||
 				model_name == ccmc::strings::models::batsrus_ ||
@@ -915,8 +919,6 @@ namespace ccmc
 			//		if (dt < .01)
 			//			dt = .01;
 
-
-
 			Point3f k1 = getVector(variable, previous, dComponent1, dComponent2, dComponent3, interpolator);
 			k1.normalize();
 			dt = calculateDT(dComponent1, dComponent2, dComponent3, adjusted_dn);
@@ -956,7 +958,7 @@ namespace ccmc
 					finished = true;
 				}
 				oldPoint = previous;
-				//	 newPointData;
+				//	newPointData;
 				//	newPointData.setPosition(newPoint);
 				iterations++;
 				if (iterations > step_max)

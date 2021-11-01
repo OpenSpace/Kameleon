@@ -1,6 +1,7 @@
 #include "KameleonInterpolator.h"
 #include "StringConstants.h"
 #include <string>
+#include <cmath>
 
 namespace ccmc
 {
