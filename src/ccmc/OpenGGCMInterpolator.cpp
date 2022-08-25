@@ -6,6 +6,7 @@
  */
 
 #include "OpenGGCMInterpolator.h"
+#include "Model.h"
 #include "OpenGGCM.h"
 #include "Utils.h"
 #include "StringConstants.h"

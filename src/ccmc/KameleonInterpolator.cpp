@@ -7,6 +7,7 @@
 
 #include "KameleonInterpolator.h"
 #include "Constants.h"
+#include "Model.h"
 
 namespace ccmc
 {

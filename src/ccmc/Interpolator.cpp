@@ -6,7 +6,8 @@
  */
 
 #include "Interpolator.h"
-#include <iostream>
+#include "Model.h"
+
 using namespace std;
 namespace ccmc
 {

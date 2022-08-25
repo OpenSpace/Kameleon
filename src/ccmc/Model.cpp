@@ -11,6 +11,7 @@
 #include <boost/foreach.hpp>
 #include "Interpolator.h"
 #include "Constants.h"
+#include "FileReader.h"
 
 namespace ccmc
 {

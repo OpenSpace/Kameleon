@@ -8,6 +8,7 @@
 #include "MASInterpolator.h"
 #include "MAS.h"
 #include "StringConstants.h"
+#include "Model.h"
 #include "Constants.h"
 #include "Utils.h"
 //#define DEBUG_MAS_INTERPOLATOR

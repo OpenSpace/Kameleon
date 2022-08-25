@@ -9,10 +9,12 @@
 #define MAGNETOGRAMINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Model.h"
 
 namespace ccmc
 {
+
+    class Model;
+
 	/**
 	 * @class MagnetogramInterpolator MagnetogramInterpolator.h ccmc/MagnetogramInterpolator.h
 	 * @brief TODO: Brief description of MagnetogramInterpolator class

@@ -1,8 +1,4 @@
 #include "Point3f.h"
-#include <cmath>
-#include <sstream>
-#include <ostream>
-#include <cmath>
 #include "Constants.h"
 #include <boost/lexical_cast.hpp>
 

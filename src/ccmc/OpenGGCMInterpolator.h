@@ -9,10 +9,11 @@
 #define OPENGGCMINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Model.h"
 
 namespace ccmc
 {
+    class Model;
+
 	/**
 	 * @class OpenGGCMInterpolator OpenGGCMInterpolator.h ccmc/OpenGGCMInterpolator.h
 	 * @brief TODO: Brief description of OpenGGCMInterpolator class

@@ -1,10 +1,7 @@
-#include <vector>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <cmath>
 #include "Tracer.h"
-#include "Point3f.h"
+#include "Constants.h"
+#include "Interpolator.h"
+#include "Kameleon.h"
 #include <boost/lexical_cast.hpp>
 #include "StringConstants.h"
 //#define DEBUG_TRACER

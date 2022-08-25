@@ -5,18 +5,11 @@
  *      Author: Asher Pembroke
  */
 #include "LFMInterpolator.h"
+#include "Model.h"
 #include "LFM.h"
-#include "Utils.h"
-#include "StringConstants.h"
-#include "time.h"
-#include "math.h"
-#include <fstream>
-#include "Point3f.h"
-#include "Vector.h"
-#include "Point.h"
-#include "Polyhedron.h"
-#include "boost/ptr_container/ptr_vector.hpp"
 
+#define ijk1(i,j,k) ((i)+nip1*((j)+njp1*(k))) // cell corner index
+#define ijkc(i,j,k) ((i)+ni*((j)+nj*(k))) //cell center index
 
 namespace ccmc
 {

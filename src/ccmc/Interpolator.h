@@ -8,7 +8,6 @@
 #ifndef INTERPOLATOR_H_
 #define INTERPOLATOR_H_
 
-#include "Model.h"
 namespace ccmc
 {
 	class Model;

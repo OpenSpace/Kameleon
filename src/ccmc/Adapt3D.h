@@ -7,15 +7,10 @@
 
 #ifndef ADAPT3D_H_
 #define ADAPT3D_H_
-#include <string>
-#include "Cell3D.h"
 #include "Model.h"
-#include "Constants.h"
 #include "Point3f.h"
 #include <vector>
-#include <boost/unordered_map.hpp>
 #include <boost/multi_array.hpp>
-#include <string>
 
 #define NNODE_ADAPT3D 4
 #define NVARS_ADAPT3D 12

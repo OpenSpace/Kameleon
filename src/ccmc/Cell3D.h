@@ -8,7 +8,6 @@
 #ifndef CELL3D_H_
 #define CELL3D_H_
 
-#ifdef __cplusplus
 #include "Point.h"
 #include <vector>
 #include <deque>
@@ -476,5 +475,4 @@ namespace ccmc
 	}
 
 }
-#endif /* __cplusplus */
 #endif /* CELL3D_H_ */

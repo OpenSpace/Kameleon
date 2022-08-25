@@ -1,4 +1,5 @@
 #include "KameleonInterpolator.h"
+#include "Model.h"
 #include <string>
 
 namespace ccmc

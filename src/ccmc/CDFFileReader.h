@@ -7,15 +7,9 @@
 
 #ifndef CDFFILEREADER_H_
 #define CDFFILEREADER_H_
-#include <string>
-#include <vector>
-#include <iostream>
-#include "Attribute.h"
-#include <boost/unordered_map.hpp>
-#include "cdf.h"
 #include "FileReader.h"
 
-
+#include "cdf.h"
 
 
 

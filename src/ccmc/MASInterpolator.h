@@ -9,10 +9,12 @@
 #define MASINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Model.h"
 
 namespace ccmc
 {
+
+    class Model;
+
 	/**
 	 * @class MASInterpolator MASInterpolator.h ccmc/MASInterpolator.h
 	 * @brief TODO: Brief description of MASInterpolator class

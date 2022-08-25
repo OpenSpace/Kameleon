@@ -36,26 +36,8 @@
  * @class Kameleon Kameleon.h ccmc/Kameleon.h
  */
 
-
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-//#include <boost/unordered_map.hpp>
-//#include <boost/array.hpp>
-//#include <boost/lexical_cast.hpp>
-//#include <boost/format.hpp>
-#include "Interpolator.h"
-#include "Model.h"
-#include "GeneralFileReader.h"
-#include "TimeInterpolator.h"
-#include "Constants.h"
-#include "cxform.h"
-#include <iostream>
+#include "Attribute.h"
 #include "CCMCTime.h"
-#include "Tracer.h"
-#include <unordered_map>
-
 
 //cdf constants
 #define EPOCH3_STRING_LEN        24
@@ -69,6 +51,10 @@
  */
 namespace ccmc
 {
+
+    class GeneralFileReader;
+    class Interpolator;
+    class Model;
 
 	extern "C" double parseEPOCH3(char epString[EPOCH3_STRING_LEN+1]);
 	extern "C" void encodeEPOCH3(double epoch, char epString[EPOCH3_STRING_LEN+1]);

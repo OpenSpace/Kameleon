@@ -1,4 +1,5 @@
 #include "Kameleon.h"
+#include "Model.h"
 #include "StringConstants.h"
 
 namespace ccmc

@@ -6,20 +6,10 @@
  */
 
 #include "Adapt3D.h"
-#include "Point.h"
-#include "Cell3D.h"
-#include "Vector.h"
 #include "Adapt3DInterpolator.h"
+#include "FileReader.h"
 #include "StringConstants.h"
 #include "MathHelper.h"
-#include "GeneralFileReader.h"
-#include "Point3f.h"
-#include <stdio.h>
-#include <algorithm>
-#include <limits>
-#include <cmath>
-#include <vector>
-#include <string>
 
 //#define DEBUG
 //#define DEBUGS

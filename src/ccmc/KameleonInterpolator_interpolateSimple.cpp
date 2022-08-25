@@ -1,5 +1,6 @@
 #include "KameleonInterpolator.h"
 #include "Constants.h"
+#include "Model.h"
 #include <iostream>
 #include <string>
 using namespace std;

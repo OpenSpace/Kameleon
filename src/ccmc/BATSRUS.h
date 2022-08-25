@@ -8,9 +8,7 @@
 #ifndef BATSRUS_H_
 #define BATSRUS_H_
 #include <string>
-#include "Cell3D.h"
 #include "Model.h"
-#include "Constants.h"
 #include <vector>
 
 namespace ccmc

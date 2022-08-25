@@ -9,7 +9,6 @@
 #define ADAPT3DINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Adapt3D.h"
 
 #define NNODE_ADAPT3D 4
 #define NDIMN_ADAPT3D 3
@@ -17,6 +16,8 @@
 
 namespace ccmc
 {
+    class SmartGridSearchValues;
+
 	/**
 	 * @class Adapt3DInterpolator
 	 * @brief TODO: brief description of BATSRUSInterpolator class

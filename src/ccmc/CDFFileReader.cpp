@@ -6,13 +6,7 @@
  */
 
 #include "CDFFileReader.h"
-#include <string>
-#include <vector>
-#include <deque>
-#include <iostream>
 #include <fstream>
-#include <queue>
-#include <boost/current_function.hpp>
 
 
 namespace ccmc

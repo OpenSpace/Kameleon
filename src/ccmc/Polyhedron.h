@@ -8,13 +8,7 @@
 #ifndef POLYHEDRON_H_
 #define POLYHEDRON_H_
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cmath>
-#include "Point.h"
 #include "Vector.h"
-#include "time.h"
 namespace ccmc
 
 {

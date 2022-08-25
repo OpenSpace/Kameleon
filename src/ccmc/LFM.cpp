@@ -6,15 +6,9 @@
  */
 
 #include "LFM.h"
-#include "Point.h"
-#include "Cell3D.h"
 #include "Vector.h"
 #include "LFMInterpolator.h"
 #include "StringConstants.h"
-#include "GeneralFileReader.h"
-#include <iostream>
-#include "nanoflann.hpp"
-#include "math.h"
 
 namespace ccmc
 {
@@ -48,9 +42,9 @@ namespace ccmc
 	{
 		this->setBusyStatus(Model::BUSY);
 		long status;
-		std::cout << "calling GeneralFileReader open function"<<endl;
+		std::cout << "calling GeneralFileReader open function"<<std::endl;
 		status = GeneralFileReader::open(filename);
-		std::cout <<"File opened, loading x,y,z,V_th,rho"<<endl;
+		std::cout <<"File opened, loading x,y,z,V_th,rho"<<std::endl;
 		this->progress = 20;
 		loadVariable(ccmc::strings::variables::x_);
 		x_array = this->variableData["x"];
@@ -100,7 +94,7 @@ namespace ccmc
 	 * Note: these results might be off by a negative sign: check that E = -v x B
 	 */
 	void LFM::loadEfield(){
-		std::cout<<"calculating electric field from edge components"<<endl;
+		std::cout<<"calculating electric field from edge components"<<std::endl;
 
 		loadVariable("ei");
 		loadVariable("ej");

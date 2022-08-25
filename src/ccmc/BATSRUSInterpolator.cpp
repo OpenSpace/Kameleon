@@ -6,11 +6,8 @@
  */
 
 #include "BATSRUSInterpolator.h"
+#include "Model.h"
 #include "StringConstants.h"
-#include <limits>
-#include <cmath>
-#include <iostream>
-
 
 namespace ccmc
 {

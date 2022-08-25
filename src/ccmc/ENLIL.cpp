@@ -7,9 +7,8 @@
 
 #include "ENLIL.h"
 #include "ENLILInterpolator.h"
-#include "Constants.h"
+#include "FileReader.h"
 #include "StringConstants.h"
-#include "GeneralFileReader.h"
 
 namespace ccmc
 {

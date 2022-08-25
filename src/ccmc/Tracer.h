@@ -1,16 +1,7 @@
 #ifndef CCMC_TRACER_H
 #define CCMC_TRACER_H
 
-//#ifdef __cplusplus
-//#include <map>
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include "Kameleon.h"
-#include "Interpolator.h"
-#include "Point3f.h"
 #include "Fieldline.h"
-//using namespace std;
 /**
  * @namespace ccmc
  * @brief Namespace for the Community Coordinated Modeling Center code
@@ -19,6 +10,7 @@
  */
 namespace ccmc
 {
+    class Interpolator;
 	class Kameleon;
 
 	/**

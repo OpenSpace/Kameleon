@@ -7,11 +7,7 @@
 
 // #ifndef LFM_H_
 // #define LFM_H_
-#include <string>
-#include "Cell3D.h"
 #include "Model.h"
-#include <vector>
-#include <boost/unordered_map.hpp>
 
 namespace ccmc
 {

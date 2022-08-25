@@ -8,7 +8,7 @@
 #ifndef OPENGGCM_H_
 #define OPENGGCM_H_
 #include <string>
-#include "Cell3D.h"
+//#include "Cell3D.h"
 #include "Model.h"
 #include <vector>
 #include <boost/unordered_map.hpp>

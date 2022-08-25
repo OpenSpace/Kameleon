@@ -8,7 +8,6 @@
 #include "SWMFIono.h"
 #include "SWMFIonoInterpolator.h"
 #include "StringConstants.h"
-#include "GeneralFileReader.h"
 
 
 namespace ccmc{

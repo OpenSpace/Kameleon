@@ -1,8 +1,6 @@
 #ifndef CCMC_TIME_H
 #define CCMC_TIME_H
 
-#include <string>
-#include <iostream>
 #include <ostream>
 
 namespace ccmc

@@ -10,17 +10,11 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <iostream>
 #include "Attribute.h"
-#include "FileReader.h"
-#include "cdf.h"
-
-
-
-
 
 namespace ccmc
 {
+    class FileReader;
 
 
 	/**

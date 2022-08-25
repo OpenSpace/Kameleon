@@ -9,9 +9,10 @@
 #define _SWMFIonoInterpolator_h
 
 #include "Interpolator.h"
-#include "Model.h"
 
 namespace ccmc{ 
+
+    class Model;
     
     class SWMFIonoInterpolator: public Interpolator
     {

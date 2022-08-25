@@ -6,12 +6,9 @@
  */
 
 #include "BATSRUS.h"
-#include "Point.h"
-#include "Cell3D.h"
-#include "Vector.h"
+#include "FileReader.h"
 #include "BATSRUSInterpolator.h"
 #include "StringConstants.h"
-#include "GeneralFileReader.h"
 
 
 namespace ccmc

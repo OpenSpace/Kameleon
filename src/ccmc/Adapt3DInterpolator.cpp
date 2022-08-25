@@ -6,12 +6,10 @@
  */
 
 #include "Adapt3DInterpolator.h"
-#include "Adapt3D.h" //include the smart values structure
+#include "Adapt3D.h"
+#include "Model.h"
 #include "StringConstants.h"
 #include "MathHelper.h"
-#include <stdio.h>
-#include <iostream>
-//#include <boost/thread.hpp>
 #define MIN_RANGE    -1e9
 #define MAX_RANGE    +1e9
 #define NNODE_ADAPT3D 4

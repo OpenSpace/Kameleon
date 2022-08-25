@@ -11,19 +11,13 @@
  **/
 #include "Kameleon.h"
 
-#include "FileReader.h"
-
+//#include "FileReader.h"
+//
 #include "KameleonInterpolator.h"
+#include "TimeInterpolator.h"
 #include "Constants.h"
-#include <boost/lexical_cast.hpp>
-#include <boost/foreach.hpp>
-#include <string>
-#include <map>
-#include <set>
-#include <vector>
-#include <sstream>
-#include <math.h>
-#include <iostream>
+#include "FileReader.h"
+#include "Model.h"
 
 //#define DEBUG_DERIVED
 //#define DEPRECATED_WARNING

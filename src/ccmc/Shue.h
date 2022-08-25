@@ -7,10 +7,10 @@
 #ifdef __cplusplus
 #ifndef SHUE_H_
 #define SHUE_H_
-#include <string>
-#include <vector>
-#include <time.h>
-#include <ctime>
+//#include <string>
+//#include <vector>
+//#include <time.h>
+//#include <ctime>
 using namespace std;
 
 struct IMFdata

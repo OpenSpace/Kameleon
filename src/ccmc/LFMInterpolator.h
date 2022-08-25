@@ -9,14 +9,13 @@
 #define LFMINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Model.h"
+//#include "Model.h"
 #include "pointcloud.h"
-#include "time.h"
-#define ijk1(i,j,k) ((i)+nip1*((j)+njp1*(k))) // cell corner index
-#define ijkc(i,j,k) ((i)+ni*((j)+nj*(k))) //cell center index
+//#include "time.h"
+
 #include "Polyhedron.h"
 #include "boost/ptr_container/ptr_vector.hpp"
-#include "boost/unordered_map.hpp"
+//#include "boost/unordered_map.hpp"
 
 namespace ccmc
 {

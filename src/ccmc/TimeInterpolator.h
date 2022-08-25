@@ -8,9 +8,6 @@
 #ifndef TIMEINTERPOLATOR_H_
 #define TIMEINTERPOLATOR_H_
 
-#include <vector>
-#include "Kameleon.h"
-#include "Interpolator.h"
 #include "CCMCTime.h"
 
 namespace std {
@@ -23,7 +20,7 @@ namespace std {
 namespace ccmc
 {
 
-
+    class Interpolator;
 	class Kameleon;
 
 	/*

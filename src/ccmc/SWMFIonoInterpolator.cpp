@@ -7,6 +7,7 @@
 
 #include "SWMFIonoInterpolator.h"
 #include "SWMFIono.h"
+#include "Model.h"
 #include "StringConstants.h"
 #include "Constants.h"
 #include "Utils.h"

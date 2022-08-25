@@ -4,19 +4,8 @@
  *  Created on: Apr 22, 2009
  *      Author: David Berrios
  */
-// #include "config.h"
-#include "Kameleon-plus-Config.h"
-#include "FileReader.h"
-#include "CDFFileReader.h"
-#include "HDF5FileReader.h"
 #include "GeneralFileReader.h"
-#include <string>
-#include <vector>
-#include <deque>
-#include <iostream>
-#include <fstream>
-#include <queue>
-
+#include "CDFFileReader.h"
 
 namespace ccmc
 {

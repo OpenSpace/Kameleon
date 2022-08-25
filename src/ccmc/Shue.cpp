@@ -6,14 +6,8 @@
  */
 
 #include "Shue.h"
-#include <algorithm>
-#include <string>
-#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <cmath>
-#include <cstdlib>
 
 using namespace std;
 

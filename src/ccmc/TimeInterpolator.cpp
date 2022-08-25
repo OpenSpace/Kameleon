@@ -6,15 +6,11 @@
  */
 
 #include "TimeInterpolator.h"
-#include "GeneralFileReader.h"
 #include "FileReader.h"
 #include "Interpolator.h"
 #include "Utils.h"
 #include "Kameleon.h"
-#include "CCMCTime.h"
-#include "string.h"
-#include <algorithm>
-#include <boost/functional/hash.hpp>
+#include "cdf.h"
 
 namespace std {
 	std::size_t hash<ccmc::Time>::operator()(const ccmc::Time& t) const noexcept {

@@ -6,8 +6,7 @@
  */
 
 #include "MAS.h"
-#include "Interpolator.h"
-#include "GeneralFileReader.h"
+#include "FileReader.h"
 #include "MASInterpolator.h"
 #include "StringConstants.h"
 

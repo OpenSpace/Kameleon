@@ -1,6 +1,5 @@
 #ifndef CCMC_POINT3F_H_
 #define CCMC_POINT3F_H_
-#include <iostream>
 #include <string>
 
 namespace ccmc

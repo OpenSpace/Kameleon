@@ -6,6 +6,7 @@
  */
 
 #include "MagnetogramInterpolator.h"
+#include "Model.h"
 
 namespace ccmc
 {

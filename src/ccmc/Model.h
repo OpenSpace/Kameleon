@@ -8,12 +8,10 @@
 #ifndef MODEL_H_
 #define MODEL_H_
 #include <string>
-#include <map>
 #include <vector>
 #include <unordered_map>
 
 #include "GeneralFileReader.h"
-#include "Interpolator.h"
 
 namespace ccmc
 {

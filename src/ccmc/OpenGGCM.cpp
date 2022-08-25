@@ -6,12 +6,8 @@
  */
 
 #include "OpenGGCM.h"
-#include "Point.h"
-#include "Cell3D.h"
-#include "Vector.h"
 #include "OpenGGCMInterpolator.h"
 #include "StringConstants.h"
-#include "GeneralFileReader.h"
 
 namespace ccmc
 {

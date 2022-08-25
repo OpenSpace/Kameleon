@@ -7,11 +7,10 @@
 
 #include "ENLILInterpolator.h"
 #include "ENLIL.h"
+#include "Model.h"
 #include "Constants.h"
 #include "StringConstants.h"
 #include "Utils.h"
-#include <iostream>
-#include <cmath>
 
 namespace ccmc
 {

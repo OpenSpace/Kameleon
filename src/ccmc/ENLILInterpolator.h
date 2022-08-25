@@ -9,7 +9,6 @@
 #define ENLILINTERPOLATOR_H_
 
 #include "Interpolator.h"
-#include "Model.h"
 #include <string>
 
 namespace ccmc

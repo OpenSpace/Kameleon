@@ -8,8 +8,6 @@
 #ifndef VECTOR_H_
 #define VECTOR_H_
 
-#include <iostream>
-#include <sstream>
 #include <cmath>
 #include "Point.h"
 
