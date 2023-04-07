@@ -9,6 +9,7 @@
 #define POLYHEDRON_H_
 
 #include "Vector.h"
+#include <fstream>
 namespace ccmc
 
 {

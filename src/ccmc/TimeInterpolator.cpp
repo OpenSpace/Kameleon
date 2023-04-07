@@ -12,8 +12,10 @@
 #include "Kameleon.h"
 #include "cdf.h"
 
+#include "boost/functional/hash.hpp"
+
 namespace std {
-	std::size_t hash<ccmc::Time>::operator()(const ccmc::Time& t) const noexcept {
+	std::size_t hash<ccmc::Time>::operator()(const ccmc::Time& t) const {
 		std::size_t seed = 0;
 		boost::hash_combine(seed, t.getYear());
 		boost::hash_combine(seed, t.getMonth());

@@ -13,7 +13,7 @@
 namespace std {
 	template <>
 	struct hash<ccmc::Time> {
-		std::size_t operator()(const ccmc::Time& t) const noexcept;
+        std::size_t operator()(const ccmc::Time& t) const;
 	};
 }
 
