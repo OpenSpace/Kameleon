@@ -6,7 +6,7 @@
  */
 // #include "config.h"
 #include "Kameleon-plus-Config.h" //controlled by CMakeLists.txt
-#ifdef HAVE_HDF5 
+#ifdef HAVE_HDF5
 #include "HDF5FileReader.h"
 #include <string>
 #include <vector>
@@ -648,7 +648,7 @@ namespace ccmc
 	Attribute HDF5FileReader::getGlobalAttribute(const std::string& attribute)
 	{
 		//first, check if the attribute has already been requested. If so, return stored value
-		boost::unordered_map<std::string, Attribute>::iterator iter = gAttributes.find(attribute);
+		std::unordered_map<std::string, Attribute>::iterator iter = gAttributes.find(attribute);
 		if (iter != gAttributes.end())
 			return (*iter).second;
 
@@ -741,11 +741,11 @@ namespace ccmc
 
 		//first, check the vAttributes map
 //		std::cout<<"Checking variable attributes map\n";
-		boost::unordered_map<std::string, boost::unordered_map< std::string, Attribute> >::iterator iter =
+		std::unordered_map<std::string, std::unordered_map< std::string, Attribute> >::iterator iter =
 				vAttributes.find(variable);
 		if (iter != vAttributes.end())
 		{
-			boost::unordered_map< std::string, Attribute>::iterator iter2 = vAttributes[variable].find(vattribute);
+			std::unordered_map< std::string, Attribute>::iterator iter2 = vAttributes[variable].find(vattribute);
 			if (iter2 != vAttributes[variable].end())
 			{
 				return (*iter2).second;
@@ -853,7 +853,7 @@ namespace ccmc
 	long HDF5FileReader::getVariableID(const std::string& variable)
 	{
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
+		std::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
 		if (iter != variableIDs.end())
 			return (*iter).second;
 		else
@@ -878,7 +878,7 @@ namespace ccmc
 	std::string HDF5FileReader::getVariableName(long variable)
 	{
 		//first, check the current variableNames map.  fetching the variableNames from the file is expensive
-		boost::unordered_map<long, std::string>::iterator iter = variableNames.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = variableNames.find(variable);
 		if (iter != variableNames.end())
 			return (*iter).second;
 		std::string variableName = this->variableGroup->getObjnameByIdx(variable);
@@ -898,7 +898,7 @@ namespace ccmc
 	{
 
 		//first, check the current variableIDs map.  fetching the variableID from the file is expensive
-		boost::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
+		std::unordered_map<std::string, long>::iterator iter = variableIDs.find(variable);
 		if (iter != variableIDs.end())
 			return true;
 /*

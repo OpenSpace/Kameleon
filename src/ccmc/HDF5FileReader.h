@@ -7,12 +7,12 @@
 // #ifndef HDFFILEREADER_H_
 // #define HDFFILEREADER_H_
 #include "Kameleon-plus-Config.h"// #include "config.h"
-#ifdef HAVE_HDF5 
+#ifdef HAVE_HDF5
 #include <string>
 #include <vector>
 #include <iostream>
 #include "Attribute.h"
-#include <boost/unordered_map.hpp>
+//#include <boost/unordered_map.hpp>
 #include "H5Cpp.h"
 #include "FileReader.h"
 

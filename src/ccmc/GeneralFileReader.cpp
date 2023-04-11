@@ -6,6 +6,7 @@
  */
 #include "GeneralFileReader.h"
 #include "CDFFileReader.h"
+#include "HDF5FileReader.h"
 
 namespace ccmc
 {
@@ -36,8 +37,8 @@ namespace ccmc
 			return status;
 		}
 
-#ifdef HAVE_HDF5 
-		else 
+#ifdef HAVE_HDF5
+		else
 		{
 			// std::cout << "Checking if the file is an HDF5 file" << std::endl;
 			delete fileReader;
