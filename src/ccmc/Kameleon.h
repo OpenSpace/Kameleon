@@ -73,6 +73,7 @@ namespace ccmc
 	class TimeInterpolator;
 	struct Position
 	{
+		Position(float c0 = 0, float c1 = 0.0, float c2 = 0.f): c0(c0), c1(c1), c2(c2) {}
 		float c0;
 		float c1;
 		float c2;
