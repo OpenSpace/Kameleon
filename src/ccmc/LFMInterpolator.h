@@ -14,7 +14,7 @@
 //#include "time.h"
 
 #include "Polyhedron.h"
-#include "boost/ptr_container/ptr_vector.hpp"
+//#include "boost/ptr_container/ptr_vector.hpp"
 //#include "boost/unordered_map.hpp"
 
 namespace ccmc
@@ -65,8 +65,8 @@ namespace ccmc
 
 		private:
 			Model * modelReader;
-			boost::unordered_map<std::string, float> conversionFactors;
-			boost::unordered_map<long, float> conversionFactorsByID;
+			std::unordered_map<std::string, float> conversionFactors;
+			std::unordered_map<long, float> conversionFactorsByID;
 
 
 			const std::vector<float> * x_array; //lfm cell corners - nonstatic: used for setting cell centers
@@ -91,10 +91,12 @@ namespace ccmc
 			Polyhedron<float> interpolationPolys;
 			Polyhedron<float>* searchPoly;
 			Polyhedron<float>* errorsPoly;
-			static boost::ptr_vector<Polyhedron<float> > polyhedra; //made static. only need one set loaded
-			typedef boost::ptr_vector<Polyhedron<float> > ptr_vec;
+			//static boost::ptr_vector<Polyhedron<float> > polyhedra; //made static. only need one set loaded
+			static std::vector<std::unique_ptr<Polyhedron<float>>> polyhedra;
+			//typedef boost::ptr_vector<Polyhedron<float> > ptr_vec;
+			typedef std::vector<std::unique_ptr<Polyhedron<float>>> ptr_vec;
 			ptr_vec::iterator poly_iter; //unused
-			boost::unordered_map<int, Polyhedron<float>* > interpolationPolysMap;
+			std::unordered_map<int, Polyhedron<float>* > interpolationPolysMap;
 	};
 
 

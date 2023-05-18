@@ -11,40 +11,25 @@
 #include "Utils.h"
 #include "Kameleon.h"
 #include "cdf.h"
+#include <algorithm>
+//#include "boost/functional/hash.hpp"
 
-#include "boost/functional/hash.hpp"
-
-namespace std {
-	std::size_t hash<ccmc::Time>::operator()(const ccmc::Time& t) const {
-		std::size_t seed = 0;
-		boost::hash_combine(seed, t.getYear());
-		boost::hash_combine(seed, t.getMonth());
-		boost::hash_combine(seed, t.getDay());
-		boost::hash_combine(seed, t.getHour());
-		boost::hash_combine(seed, t.getMinute());
-		boost::hash_combine(seed, t.getSeconds());
-		boost::hash_combine(seed, t.getMilliseconds());
-		//boost::hash_combine(seed, tod.hours());
-		//boost::hash_combine(seed, tod.minutes());
-		//boost::hash_combine(seed, tod.seconds());
-		//boost::hash_combine(seed, tod.fractional_seconds());
-		return seed;
-	}
+std::size_t std::hash<ccmc::Time>::operator()(const ccmc::Time& t) const {
+	std::size_t seed = 0;
+	boost::hash_combine(seed, t.getYear());
+	boost::hash_combine(seed, t.getMonth());
+	boost::hash_combine(seed, t.getDay());
+	boost::hash_combine(seed, t.getHour());
+	boost::hash_combine(seed, t.getMinute());
+	boost::hash_combine(seed, t.getSeconds());
+	boost::hash_combine(seed, t.getMilliseconds());
+	//boost::hash_combine(seed, tod.hours());
+	//boost::hash_combine(seed, tod.minutes());
+	//boost::hash_combine(seed, tod.seconds());
+	//boost::hash_combine(seed, tod.fractional_seconds());
+	return seed;
 }
 
-using namespace ccmc;
-namespace boost
-{
-
-
-//	bool operator==(const boost::posix_time::ptime& a, const boost::posix_time::ptime& b)
-//	{
-//		  if (a.date() == b.date() && a.time_of_day() == b.time_of_day())
-//			  return true;
-//		  else
-//			  return false;
-//	}
-}
 
 
 namespace ccmc
@@ -249,7 +234,7 @@ namespace ccmc
 			if (current_kameleon_files.find(this->timesteps[index]) != this->current_kameleon_files.end())
 			{
 				std::cout<<"returning kameleon object for time: "<< timesteps[index].toString()<<std::endl;
-				return this->current_kameleon_files[timesteps[index]];	
+				return this->current_kameleon_files[timesteps[index]];
 			} else //set the interpolator
 			{
 				std::cout<<"No kameleon object available, returning NULL"<<std::endl;
@@ -275,7 +260,7 @@ namespace ccmc
 			if (current_kameleon_interpolators.find(this->timesteps[index]) != this->current_kameleon_interpolators.end())
 			{
 				std::cout<<"Interpolator already loaded" <<std::endl;
-				a = this->current_kameleon_interpolators[timesteps[index]];	
+				a = this->current_kameleon_interpolators[timesteps[index]];
 			} else //set the interpolator
 			{
 				std::cout<<"Interpolator not loaded, creating new one and adding to map"<<std::endl;
@@ -304,21 +289,21 @@ namespace ccmc
 				//check that interpolator is loaded
 				if (current_kameleon_interpolators.find(this->timesteps[index]) != this->current_kameleon_interpolators.end())
 				{
-					a = this->current_kameleon_interpolators[time];	
+					a = this->current_kameleon_interpolators[time];
 				} else //set the interpolator
 				{
 					a = this->current_kameleon_files[time]->createNewInterpolator();
 					this-> current_kameleon_interpolators[time] = a;
 				}
-				
+
 				float value = a->interpolate(variable, c0, c1, c2);
 				// delete a; //when to delete this? prolly not here
 				return value;
-			} else 
+			} else
 			{
 				Interpolator * b;
 				Time atime = this->timesteps[index];
-				Time btime = this->timesteps[index+1]; 
+				Time btime = this->timesteps[index+1];
 				//Need to check if interpolators for atime and btime are loaded
 				if (current_kameleon_interpolators.find(atime) != this->current_kameleon_interpolators.end())
 				{
@@ -367,7 +352,7 @@ namespace ccmc
 				//check that interpolator is loaded
 				if (current_kameleon_interpolators.find(this->timesteps[index]) != this->current_kameleon_interpolators.end())
 				{
-					a = this->current_kameleon_interpolators[time];	
+					a = this->current_kameleon_interpolators[time];
 				} else //set the interpolator
 				{
 					a = this->current_kameleon_files[time]->createNewInterpolator();
@@ -381,7 +366,7 @@ namespace ccmc
 			{
 				Interpolator * b;
 				Time atime = this->timesteps[index];
-				Time btime = this->timesteps[index+1]; 
+				Time btime = this->timesteps[index+1];
 				//Need to check if interpolators for atime and btime are loaded
 				if (current_kameleon_interpolators.find(atime) != this->current_kameleon_interpolators.end())
 				{
@@ -440,10 +425,6 @@ namespace ccmc
 	  boost::hash_combine(seed, time.getMinute());
 	  boost::hash_combine(seed, time.getSeconds());
 	  boost::hash_combine(seed, time.getMilliseconds());
-	  //boost::hash_combine(seed, tod.hours());
-	  //boost::hash_combine(seed, tod.minutes());
-	  //boost::hash_combine(seed, tod.seconds());
-	  //boost::hash_combine(seed, tod.fractional_seconds());
 	  return seed;
 	}
 

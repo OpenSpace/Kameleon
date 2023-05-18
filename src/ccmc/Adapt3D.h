@@ -10,7 +10,7 @@
 #include "Model.h"
 #include "Point3f.h"
 #include <vector>
-#include <boost/multi_array.hpp>
+//#include <boost/multi_array.hpp>
 
 #define NNODE_ADAPT3D 4
 #define NVARS_ADAPT3D 12
@@ -42,12 +42,19 @@ namespace ccmc
 		std::vector<int> * indx;
 		std::vector<int> * esup1;
 		std::vector<int> * esup2;
-		boost::multi_array<int, 3> nelems_in_cell;//(boost::extents[nz_sg][ny_sg][nx_sg]);
-		boost::multi_array<int, 3> nnodes_in_cell;//(boost::extents[nz_sg][ny_sg][nx_sg]);
-		boost::multi_array<int, 3> start_index;//(boost::extents[nz_sg][ny_sg][nx_sg]);
-		boost::multi_array<int, 3> start_index_nodes;//(boost::extents[nz_sg][ny_sg][nx_sg]);
-		boost::multi_array<int, 3> end_index;//(boost::extents[nz_sg][ny_sg][nx_sg]);
-		boost::multi_array<int, 3> end_index_nodes;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+		//boost::multi_array<int, 3> nelems_in_cell;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> nelems_in_cell;
+		//boost::multi_array<int, 3> nnodes_in_cell;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> nnodes_in_cell;
+        //boost::multi_array<int, 3> start_index;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> start_index;
+        //boost::multi_array<int, 3> start_index_nodes;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> start_index_nodes;
+        //boost::multi_array<int, 3> end_index;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> end_index;
+        //boost::multi_array<int, 3> end_index_nodes;//(boost::extents[nz_sg][ny_sg][nx_sg]);
+        std::vector<std::vector<std::vector<int>>> end_index_nodes;
+
 		std::vector<int> * indx_nodes;
 		//int still_in_same_element;
 		std::vector<int> * delauney_search_iteration_profile;

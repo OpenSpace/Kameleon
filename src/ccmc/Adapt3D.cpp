@@ -24,12 +24,18 @@ namespace ccmc
 		this->ndimn=NDIMN_ADAPT3D;
 		this->nnode=NNODE_ADAPT3D;
 		this->nvars=NVARS_ADAPT3D;
-		this->smartSearchValues.nelems_in_cell.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
-		this->smartSearchValues.nnodes_in_cell.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
-		this->smartSearchValues.start_index.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
-		this->smartSearchValues.start_index_nodes.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
-		this->smartSearchValues.end_index.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
-		this->smartSearchValues.end_index_nodes.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+		//this->smartSearchValues.nelems_in_cell.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+		this->smartSearchValues.nelems_in_cell.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
+		//this->smartSearchValues.nnodes_in_cell.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+        this->smartSearchValues.nnodes_in_cell.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
+        //this->smartSearchValues.start_index.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+        this->smartSearchValues.start_index.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
+        //this->smartSearchValues.start_index_nodes.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+        this->smartSearchValues.start_index_nodes.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
+		//this->smartSearchValues.end_index.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+        this->smartSearchValues.end_index.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
+        //this->smartSearchValues.end_index_nodes.resize(boost::extents[nz_sg][ny_sg][nx_sg]);
+        this->smartSearchValues.end_index_nodes.resize(nz_sg, std::vector<std::vector<int>>(ny_sg, std::vector<int>(nx_sg)));
 
 		this->smartSearchValues.indx = NULL;
 		this->smartSearchValues.esup1 = NULL;

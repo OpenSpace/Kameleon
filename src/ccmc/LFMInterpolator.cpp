@@ -15,7 +15,8 @@ namespace ccmc
 {
 	bool LFMInterpolator::initializeKDTreePolyhedra = true;
 	NanoKdTree<float> LFMInterpolator::lfmtree; //how do I initialize??
-	boost::ptr_vector<Polyhedron<float> > LFMInterpolator::polyhedra;
+	//boost::ptr_vector<Polyhedron<float> > LFMInterpolator::polyhedra;
+    std::vector<std::unique_ptr<Polyhedron<float>>> LFMInterpolator::polyhedra;
 
 	/**
 	 * Constructor
@@ -86,7 +87,7 @@ namespace ccmc
 			y_array = ((LFM*) this->modelReader)->getLFMVariable("y");
 			z_array = ((LFM*) this->modelReader)->getLFMVariable("z");
 			setCellCenters(x_array,y_array,z_array);
-	
+
 
 			clock_t telapsed;
 			std::cout<<"Setting polyhedral cells\n";
@@ -99,7 +100,7 @@ namespace ccmc
 			LFMInterpolator::lfmtree.build(); // initialization
 			telapsed = clock() - telapsed;
 			printf ("It took %f seconds to build kd-tree index.\n",((float)telapsed)/CLOCKS_PER_SEC);
-			LFMInterpolator::initializeKDTreePolyhedra = false; 
+			LFMInterpolator::initializeKDTreePolyhedra = false;
 		};
 
 		searchPoly = NULL;
@@ -286,7 +287,7 @@ namespace ccmc
 	float LFMInterpolator::getConversionFactor(const std::string& variable)
 	{
 		float conversionFactor = 1.0f;
-		boost::unordered_map<std::string, float>::iterator cf = conversionFactors.find(variable);
+		std::unordered_map<std::string, float>::iterator cf = conversionFactors.find(variable);
 
 		if (cf != conversionFactors.end())
 			conversionFactor = (*cf).second;
@@ -300,7 +301,7 @@ namespace ccmc
 	float LFMInterpolator::getConversionFactor(const long& variable_id)
 	{
 		float conversionFactor = 1.0f;
-		boost::unordered_map<long, float>::iterator cf = conversionFactorsByID.find(variable_id);
+		std::unordered_map<long, float>::iterator cf = conversionFactorsByID.find(variable_id);
 
 		if (cf != conversionFactorsByID.end())
 			conversionFactor = (*cf).second;
@@ -356,24 +357,29 @@ namespace ccmc
 		for (int k = 0; k < nk; k++){
 			for (int j = 0; j < nj-1; j++){
 				for (int i = 0; i < ni-1; i++){
-                    polyhedra.push_back(new GridPolyhedron<float>(i, j, k, this));
+                    //polyhedra.push_back(new GridPolyhedron<float>(i, j, k, this));
+                    polyhedra.push_back(std::make_unique<GridPolyhedron<float>>(i, j, k, this));
 				}
 			}
 		}
 
 		//day side axis polyhedra
 		for (int i = 0; i < ni-1; i++){
-            polyhedra.push_back(new AxisPolyhedron<float>(i, true, this));
+            //polyhedra.push_back(new AxisPolyhedron<float>(i, true, this));
+            polyhedra.push_back(std::make_unique<AxisPolyhedron<float>>(i, true, this));
 		}
 		//night side axis polyhedra
 		for (int i = 0; i < ni-1; i++){
-            polyhedra.push_back(new AxisPolyhedron<float>(i, false, this));
+            //polyhedra.push_back(new AxisPolyhedron<float>(i, false, this));
+            polyhedra.push_back(std::make_unique<AxisPolyhedron<float>>(i, false, this));
 		}
 
 		//inner boundary polyhedron
-        polyhedra.push_back(new IPoly<float>(0, this));
+        //polyhedra.push_back(new IPoly<float>(0, this));
+        polyhedra.push_back(std::make_unique<IPoly<float>>(0, this));
 
-		innerBoundaryRadius = polyhedra[polyhedra.size()-1].maxDistanceToCentroid().length();
+		//innerBoundaryRadius = polyhedra[polyhedra.size()-1].maxDistanceToCentroid().length();
+		innerBoundaryRadius = polyhedra[polyhedra.size()-1]->maxDistanceToCentroid().length();
 
 		/*
 		 * Create helper nodes - a point cloud representing polyhedral centers.
@@ -383,7 +389,7 @@ namespace ccmc
 		helper_nodes.pts.resize(polyhedra.size());
 		Vector<float> centroid;
 		for (int i = 0; i<polyhedra.size();i++){
-			centroid = polyhedra[i].centroid();
+			centroid = polyhedra[i]->centroid();
 			helper_nodes.pts[i].x = centroid.c0();
 			helper_nodes.pts[i].y = centroid.c1();
 			helper_nodes.pts[i].z = centroid.c2();
@@ -636,7 +642,7 @@ namespace ccmc
 		LFMInterpolator::lfmtree.nearest(query_pt, resultSet);
 
 		int polyI,polyJ,polyK;
-		int closestHelper = ret_index[0];
+		int closestHelper = static_cast<int>(ret_index[0]);
 		typedef float num_p;
 		Polyhedron<num_p>* pStartPoly;
 		Polyhedron<num_p>* pLastPoly;
@@ -644,7 +650,7 @@ namespace ccmc
 		Polyhedron<num_p>* pNextPoly;
 		Polyhedron<num_p>* pTestPoly;
 
-		pTestPoly = &(polyhedra[closestHelper]);
+		pTestPoly = polyhedra[closestHelper].get();
 //		startCreation = clock();
 
 		/*
@@ -705,7 +711,7 @@ namespace ccmc
 			}
 
 			pLastPoly = pCurrentPoly;
-			pNextPoly = &polyhedra[pCurrentPoly->neighbors[pCurrentPoly->closestFace]];
+			pNextPoly = polyhedra[pCurrentPoly->neighbors[pCurrentPoly->closestFace]].get();
 			if (pNextPoly == pLastPoly){ //exited boundary
 //				std::cerr<<"exited boundary"<<endl;
 				break;
@@ -724,7 +730,7 @@ namespace ccmc
 	Polyhedron<float> LFMInterpolator::getInterpolationPolys(){
 		//Construct a single polyhedron out of all the polys used in interpolation
 		Polyhedron<float> mergedPoly;
-		for(boost::unordered_map<int, Polyhedron<float>* >::iterator iter = interpolationPolysMap.begin(); iter != interpolationPolysMap.end(); iter++){
+		for(std::unordered_map<int, Polyhedron<float>* >::iterator iter = interpolationPolysMap.begin(); iter != interpolationPolysMap.end(); iter++){
 			mergedPoly.merge(iter->second);
 		}
 

@@ -166,7 +166,7 @@ namespace ccmc
 				}
 			}else
 			{
-				std::cerr << BOOST_CURRENT_FUNCTION << ": Variable number was negative." << std::endl;
+				std::cerr << __FUNCTION__ << ": Variable number was negative." << std::endl;
 			}
 
 

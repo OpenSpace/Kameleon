@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include "Interpolator.h"
 #include "Kameleon.h"
-#include <boost/lexical_cast.hpp>
+//#include <boost/lexical_cast.hpp>
 #include "StringConstants.h"
 //#define DEBUG_TRACER
 #define DEPRECATED_WARNING
@@ -591,7 +591,7 @@ namespace ccmc
 			std::string bdp_string = (kameleon->getGlobalAttribute("b_dipole")).getAttributeString();
 			if (bdp_string != "")
 			{
-				bdp = boost::lexical_cast<float>(bdp_string);
+				bdp = std::stof(bdp_string);
 			} else
 			{
 				bdp = -31100.0;
@@ -811,7 +811,7 @@ namespace ccmc
 				std::string bdp_string = (kameleon->getGlobalAttribute("b_dipole")).getAttributeString();
 				if (bdp_string != "")
 				{
-					bdp = boost::lexical_cast<float>(bdp_string);
+					bdp = std::stof(bdp_string);
 				} else
 				{
 					bdp = -31100.0;
@@ -1992,10 +1992,10 @@ namespace ccmc
 								position.component1, position.component2, position.component3, dComponent1, dComponent2,
 								dComponent3) * bp;
 
-		} 
+		}
         else if (variable == "u_perp_b") { //For u_perp_b both b and u needs to be used
             // get vector values for u and b to compute the u component that is
-            // perpendicular to b. 
+            // perpendicular to b.
             Point3f vectorValue_b;
             Point3f vectorValue_u;
 

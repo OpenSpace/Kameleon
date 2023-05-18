@@ -9,7 +9,7 @@
 #include "LFM.h"
 #include "CDFFileReader.h"
 #include <string>
-#include <boost/algorithm/string.hpp>
+//#include <boost/algorithm/string.hpp>
 
 namespace ccmc
 {

@@ -11,7 +11,7 @@
 //#include "Cell3D.h"
 #include "Model.h"
 #include <vector>
-#include <boost/unordered_map.hpp>
+//#include <boost/unordered_map.hpp>
 
 namespace ccmc
 {
@@ -72,14 +72,14 @@ namespace ccmc
 			void initializeMaps();
 
 
-			boost::unordered_map<std::string, std::string> xGrid;
-			boost::unordered_map<long, std::string> xGridByID;
+			std::unordered_map<std::string, std::string> xGrid;
+			std::unordered_map<long, std::string> xGridByID;
 
-			boost::unordered_map<std::string, std::string> yGrid;
-			boost::unordered_map<long, std::string> yGridByID;
+			std::unordered_map<std::string, std::string> yGrid;
+			std::unordered_map<long, std::string> yGridByID;
 
-			boost::unordered_map<std::string, std::string> zGrid;
-			boost::unordered_map<long, std::string> zGridByID;
+			std::unordered_map<std::string, std::string> zGrid;
+			std::unordered_map<long, std::string> zGridByID;
 
 	};
 

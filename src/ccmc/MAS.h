@@ -9,7 +9,7 @@
 #define MAS_H_
 
 #include "Model.h"
-#include <boost/unordered_map.hpp>
+//#include <boost/unordered_map.hpp>
 
 namespace ccmc
 {
@@ -54,17 +54,17 @@ namespace ccmc
 
 			void initializeMaps();
 
-			boost::unordered_map<std::string, std::string> rPosGrid;
-			boost::unordered_map<long, std::string> rPosGridByID;
+			std::unordered_map<std::string, std::string> rPosGrid;
+			std::unordered_map<long, std::string> rPosGridByID;
 
-			boost::unordered_map<std::string, std::string> latPosGrid;
-			boost::unordered_map<long, std::string> latPosGridByID;
+			std::unordered_map<std::string, std::string> latPosGrid;
+			std::unordered_map<long, std::string> latPosGridByID;
 
-			boost::unordered_map<std::string, std::string> lonPosGrid;
-			boost::unordered_map<long, std::string> lonPosGridByID;
+			std::unordered_map<std::string, std::string> lonPosGrid;
+			std::unordered_map<long, std::string> lonPosGridByID;
 
-			boost::unordered_map<std::string, bool> changeSignFlag;
-			boost::unordered_map<long, bool> changeSignFlagByID;
+			std::unordered_map<std::string, bool> changeSignFlag;
+			std::unordered_map<long, bool> changeSignFlagByID;
 
 	};
 }

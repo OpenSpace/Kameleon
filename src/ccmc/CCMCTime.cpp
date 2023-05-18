@@ -1,7 +1,9 @@
 #include "CCMCTime.h"
 #include "cdf.h"
-#include <boost/format.hpp>
-#include <boost/lexical_cast.hpp>
+#include <iomanip>
+#include <sstream>
+//#include <boost/format.hpp>
+//#include <boost/lexical_cast.hpp>
 
 namespace ccmc
 {
@@ -46,7 +48,7 @@ namespace ccmc
 		seconds = ((short)lsecond);
 		milliseconds = ((short)lmsec);
 	}
-	
+
 	Time::Time(double epochTime)
 	{
 		EPOCHbreakdown(epochTime, (long*)&year, (long *)&month, (long*)&day, (long*)&hour, (long*)&minute, (long*)&seconds, (long*)&milliseconds);
@@ -69,13 +71,34 @@ namespace ccmc
 		std::string secondStr = "";
 		std::string yearStr = "";
 		std::string msecStr = "";
-		yearStr = (boost::format("%04d") % boost::lexical_cast<std::string>(year)).str();
-		monthStr = (boost::format("%02d") % boost::lexical_cast<std::string>(month)).str();
-		dayStr = (boost::format("%02d") % boost::lexical_cast<std::string>(day)).str();
-		hourStr = (boost::format("%02d") % boost::lexical_cast<std::string>(hour)).str();
-		minuteStr = (boost::format("%02d") % boost::lexical_cast<std::string>(minute)).str();
-		secondStr = (boost::format("%02d") % boost::lexical_cast<std::string>(seconds)).str();
-		msecStr = (boost::format("%03d") % boost::lexical_cast<std::string>(milliseconds)).str();
+        std::ostringstream oss;
+        oss.str("");
+        oss << std::setw(4) << std::setfill('0') << year;
+        yearStr = oss.str();
+
+        oss.str("");
+        oss << std::setw(2) << std::setfill('0') << month;
+        monthStr = oss.str();
+
+        oss.str("");
+        oss << std::setw(2) << std::setfill('0') << hour;
+        dayStr = oss.str();
+        //dayStr = (boost::format("%02d") % boost::lexical_cast<std::string>(day)).str();
+
+        oss.str("");
+        oss << std::setw(2) << std::setfill('0') << minute;
+        minuteStr = oss.str();
+        //minuteStr = (boost::format("%02d") % boost::lexical_cast<std::string>(day)).str();
+
+        oss.str("");
+        oss << std::setw(2) << std::setfill('0') << seconds;
+        secondStr = oss.str();
+        //secondStr = (boost::format("%02d") % boost::lexical_cast<std::string>(seconds)).str();
+
+        oss.str("");
+        oss << std::setw(2) << std::setfill('0') << milliseconds;
+        msecStr = oss.str();
+        //msecStr = (boost::format("%02d") % boost::lexical_cast<std::string>(seconds)).str();
 
 		timeString  = yearStr  +  "-" + monthStr + "-" + dayStr + "T" + hourStr + ":" + minuteStr + ":" + secondStr + "." + msecStr + "Z";
 		return timeString;

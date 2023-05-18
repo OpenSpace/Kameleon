@@ -1,5 +1,5 @@
 #include "Attribute.h"
-#include <boost/lexical_cast.hpp>
+//#include <boost/lexical_cast.hpp>
 
 namespace ccmc
 {
@@ -109,10 +109,10 @@ namespace ccmc
 		std::string string_value = "";
 		if (type == Attribute::FLOAT)
 		{
-			string_value += "FLOAT: " + this->attributeName + ": " + boost::lexical_cast<std::string>(this->fValue);
+			string_value += "FLOAT: " + this->attributeName + ": " + std::to_string(this->fValue);
 		} else if (type == Attribute::INT)
 		{
-			string_value += "INT: " + this->attributeName + ": " + boost::lexical_cast<std::string>(this->iValue);
+			string_value += "INT: " + this->attributeName + ": " + std::to_string(this->iValue);
 
 		} else
 		{

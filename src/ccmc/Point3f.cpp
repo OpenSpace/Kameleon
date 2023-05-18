@@ -1,6 +1,6 @@
 #include "Point3f.h"
 #include "Constants.h"
-#include <boost/lexical_cast.hpp>
+//#include <boost/lexical_cast.hpp>
 
 namespace ccmc
 {
@@ -213,11 +213,15 @@ namespace ccmc
 		std::string str = beg + scomponent1 + mid + scomponent2 + mid + scomponent3 + end;
 		return str;
 		*/
-		std::string temp_string = "";
-		temp_string = "(" + boost::lexical_cast<std::string>(component1) + ",";
-		temp_string += boost::lexical_cast<std::string>(component2) + ",";
-		temp_string += boost::lexical_cast<std::string>(component3) + ")";
-		return temp_string;
+		//std::string temp_string = "";
+		//temp_string = "(" + boost::lexical_cast<std::string>(component1) + ",";
+		//temp_string += boost::lexical_cast<std::string>(component2) + ",";
+		//temp_string += boost::lexical_cast<std::string>(component3) + ")";
+		//return temp_string;
+        std::string temp_string = "(" + std::to_string(component1) + ",";
+        temp_string += std::to_string(component2) + ",";
+        temp_string += std::to_string(component3) + ")";
+        return temp_string;
 	}
 
 	/**

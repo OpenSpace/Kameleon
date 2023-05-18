@@ -7,7 +7,8 @@
 
 #include "KameleonInterpolator.h"
 #include <vector>
-#include <boost/algorithm/string.hpp>
+#include <sstream>
+//#include <boost/algorithm/string.hpp>
 
 
 namespace ccmc
@@ -46,7 +47,13 @@ namespace ccmc
 		//parse the string, and attempt to calculate the gradient of the parsed variable
 
 		std::vector<std::string> tokens;
-		boost::split(tokens, variable, boost::is_any_of("."), boost::token_compress_on);
+		//boost::split(tokens, variable, boost::is_any_of("."), boost::token_compress_on);
+        std::istringstream iss(variable);
+        std::string token;
+        while (std::getline(iss, token, '.')) {
+            tokens.push_back(token);
+        }
+
 
 		/*t = interpolate("t", positionComponent1, positionComponent2, positionComponent3, dComponent1, dComponent2,
 				dComponent3);

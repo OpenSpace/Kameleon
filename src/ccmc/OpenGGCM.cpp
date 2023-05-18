@@ -164,7 +164,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getXGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->xGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->xGrid.find(variable);
 		if (iter != xGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -180,7 +180,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getXGridName(long variable)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->xGridByID.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = this->xGridByID.find(variable);
 		if (iter != xGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -195,7 +195,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getYGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->yGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->yGrid.find(variable);
 		if (iter != yGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -211,7 +211,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getYGridName(long variable)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->yGridByID.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = this->yGridByID.find(variable);
 		if (iter != yGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -226,7 +226,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getZGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->zGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->zGrid.find(variable);
 		if (iter != zGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -242,7 +242,7 @@ namespace ccmc
 
 	std::string OpenGGCM::getZGridName(long variable)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->zGridByID.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = this->zGridByID.find(variable);
 		if (iter != zGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;

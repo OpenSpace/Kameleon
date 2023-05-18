@@ -119,7 +119,7 @@ namespace ccmc
 
 	std::string MAS::getRPosGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->rPosGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->rPosGrid.find(variable);
 		if (iter != rPosGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -133,7 +133,7 @@ namespace ccmc
 
 	std::string MAS::getRPosGridName(long variable)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->rPosGridByID.find(variable);
+		std::unordered_map<long, std::string>::iterator iter = this->rPosGridByID.find(variable);
 		if (iter != rPosGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -158,7 +158,7 @@ namespace ccmc
 
 	std::string MAS::getLatPosGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->latPosGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->latPosGrid.find(variable);
 		if (iter != latPosGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -172,7 +172,7 @@ namespace ccmc
 	}
 	std::string MAS::getLatPosGridName(long variable_id)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->latPosGridByID.find(variable_id);
+		std::unordered_map<long, std::string>::iterator iter = this->latPosGridByID.find(variable_id);
 		if (iter != latPosGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -201,7 +201,7 @@ namespace ccmc
 
 	std::string MAS::getLonPosGridName(const std::string& variable)
 	{
-		boost::unordered_map<std::string, std::string>::iterator iter = this->lonPosGrid.find(variable);
+		std::unordered_map<std::string, std::string>::iterator iter = this->lonPosGrid.find(variable);
 		if (iter != lonPosGrid.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -216,7 +216,7 @@ namespace ccmc
 
 	std::string MAS::getLonPosGridName(long variable_id)
 	{
-		boost::unordered_map<long, std::string>::iterator iter = this->lonPosGridByID.find(variable_id);
+		std::unordered_map<long, std::string>::iterator iter = this->lonPosGridByID.find(variable_id);
 		if (iter != lonPosGridByID.end())
 		{
 			//std::cerr << "grid: " << (*iter).second << std::endl;
@@ -303,7 +303,7 @@ namespace ccmc
 
 	bool MAS::getChangeSignFlag(std::string variable)
 	{
-		boost::unordered_map<std::string, bool>::iterator iter = this->changeSignFlag.find(variable);
+		std::unordered_map<std::string, bool>::iterator iter = this->changeSignFlag.find(variable);
 		if (iter != changeSignFlag.end())
 			return (*iter).second;
 		else
@@ -313,7 +313,7 @@ namespace ccmc
 
 	bool MAS::getChangeSignFlag(long variable_id)
 	{
-		boost::unordered_map<long, bool>::iterator iter = this->changeSignFlagByID.find(variable_id);
+		std::unordered_map<long, bool>::iterator iter = this->changeSignFlagByID.find(variable_id);
 		if (iter != changeSignFlagByID.end())
 			return (*iter).second;
 		else
