@@ -15,18 +15,18 @@
 //#include "boost/functional/hash.hpp"
 
 std::size_t std::hash<ccmc::Time>::operator()(const ccmc::Time& t) const {
+    // https://stackoverflow.com/questions/35985960/c-why-is-boosthash-combine-the-best-way-to-combine-hash-values
 	std::size_t seed = 0;
-	boost::hash_combine(seed, t.getYear());
-	boost::hash_combine(seed, t.getMonth());
-	boost::hash_combine(seed, t.getDay());
-	boost::hash_combine(seed, t.getHour());
-	boost::hash_combine(seed, t.getMinute());
-	boost::hash_combine(seed, t.getSeconds());
-	boost::hash_combine(seed, t.getMilliseconds());
-	//boost::hash_combine(seed, tod.hours());
-	//boost::hash_combine(seed, tod.minutes());
-	//boost::hash_combine(seed, tod.seconds());
-	//boost::hash_combine(seed, tod.fractional_seconds());
+    std::hash<short> hasher;
+
+    seed ^= hasher(t.getYear()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getMonth()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getDay()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getHour()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getMinute()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getSeconds()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    seed ^= hasher(t.getMilliseconds()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+
 	return seed;
 }
 
@@ -415,16 +415,18 @@ namespace ccmc
 
 	}
 
-	inline std::size_t hash_value(Time const& time)
+	inline std::size_t hash_value(Time const& t)
 	{
 	  std::size_t seed = 0;
-	  boost::hash_combine(seed, time.getYear());
-	  boost::hash_combine(seed, time.getMonth());
-	  boost::hash_combine(seed, time.getDay());
-	  boost::hash_combine(seed, time.getHour());
-	  boost::hash_combine(seed, time.getMinute());
-	  boost::hash_combine(seed, time.getSeconds());
-	  boost::hash_combine(seed, time.getMilliseconds());
+      std::hash<short> hasher;
+
+      seed ^= hasher(t.getYear()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getMonth()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getDay()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getHour()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getMinute()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getSeconds()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      seed ^= hasher(t.getMilliseconds()) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 	  return seed;
 	}
 
