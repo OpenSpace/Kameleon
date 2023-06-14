@@ -10,6 +10,7 @@
 #include "FileReader.h"
 #include "StringConstants.h"
 #include "MathHelper.h"
+#include "math.h"
 
 //#define DEBUG
 //#define DEBUGS
