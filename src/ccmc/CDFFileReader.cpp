@@ -7,6 +7,7 @@
 
 #include "CDFFileReader.h"
 #include <fstream>
+#include <boost/current_function.hpp>
 
 
 namespace ccmc
