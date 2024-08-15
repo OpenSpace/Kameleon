@@ -1,5 +1,6 @@
 Kameleon-plus 1.0.0
-
+This is a stale fork of the Kameleon software that OpenSpace uses
+Main repo is here: https://github.com/ccmc/ccmc-software
 
 Requirements: 
 	cmake 2.8
