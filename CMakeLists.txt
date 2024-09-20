@@ -32,11 +32,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${KAMELEON_EXT_DIR})
 # External Third-party software options
 #########################################################################################
 
-#boost settings
-#set(Boost_USE_STATIC_LIBS ON)
-#set(Boost_USE_MULTITHREADED ON)  
-#set(Boost_USE_STATIC_RUNTIME ON) 
-
 # If libraries needs to be built, make them shared
 option(BUILD_SHARED_LIBS "Build Shared Libraries" ON)
 
@@ -51,10 +46,6 @@ option(CDF_BUILD_ZLIB "Build CDF with zlib" ON)
 #########################################################################################
 # External Third-party software
 #########################################################################################
-
-# Boost
-#find_package(Boost REQUIRED)
-#set(CCMC_DEPENDENT_LIBS ${CCMC_DEPENDENT_LIBS} ${Boost_LIBRARIES})
 
 # HDF5
 find_package(HDF5 COMPONENTS C CXX)

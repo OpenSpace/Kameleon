@@ -1,8 +1,8 @@
 # java wrappers (kameleon-plus/src/ccmc/wrappers/java)
 # JAVA wrappers - the goal is to mimic Makefile to produce the following
 # libkameleon_plus-wrapper-java.jnilib
-# kameleon_plus-native-macosx-universal-0.3.15.jar	
-# kameleon_plus-wrapper-0.3.15.jar	
+# kameleon_plus-native-macosx-universal-0.3.15.jar
+# kameleon_plus-wrapper-0.3.15.jar
 
 
 
@@ -19,7 +19,7 @@ INCLUDE(${SWIG_USE_FILE})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
 # Kameleon includes
-INCLUDE_DIRECTORIES(${KAMELEON_SRC_DIR}) 
+INCLUDE_DIRECTORIES(${KAMELEON_SRC_DIR})
 
 # hdf5
 if(KAMELEON_USE_HDF5)
@@ -29,7 +29,7 @@ if(KAMELEON_USE_HDF5)
 endif(KAMELEON_USE_HDF5)
 
 # Boost
-include_directories(${Boost_INCLUDE_DIRS})                                                                                          
+include_directories(${Boost_INCLUDE_DIRS})
 # message(STATUS "wrappers/java/ Include boost directories: " ${Boost_INCLUDE_DIRS})
 
 # CDF
@@ -45,11 +45,11 @@ SET_SOURCE_FILES_PROPERTIES(../ccmcJava.i PROPERTIES CPLUSPLUS ON)
 SET(CMAKE_SWIG_FLAGS -Wall -package gov.nasa.gsfc.ccmc)
 
 #create libkameleon_plus-wrapper-java-1.0.0.jnilib on mac
-SWIG_ADD_MODULE(kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} java ../ccmcJava.i) 
+SWIG_ADD_MODULE(kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} java ../ccmcJava.i)
 get_property(java_wrapped_mod_name TARGET kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} PROPERTY LOCATION)
 message (STATUS "kameleon_plus-wrapper-java location == ${java_wrapped_mod_name}")
 # link ccmc library
-SWIG_LINK_LIBRARIES(kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} ccmc) 
+SWIG_LINK_LIBRARIES(kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} ccmc)
 
 ## The library name expected by the JNI relative to the system:
 ##   MacOS  : libLIBRARY.jnilib -> libkameleon_plus-wrapper-java.jnilib
@@ -63,7 +63,7 @@ SWIG_LINK_LIBRARIES(kameleon_plus-wrapper-java-${KAMELEON_PLUS_VERSION} ccmc)
 # generate kameleon_plus-wrapper-java.jar (doesn't include manifest..)
 set(CMAKE_JAVA_TARGET_OUTPUT_NAME kameleon_plus-wrapper-java)
 set(CMAKE_JAVA_TARGET_VERSION ${KAMELEON_PLUS_VERSION})
-add_jar(kameleon_plus_jni ${CMAKE_CURRENT_SOURCE_DIR}/*.java) # * wildcard may not work on windows 
+add_jar(kameleon_plus_jni ${CMAKE_CURRENT_SOURCE_DIR}/*.java) # * wildcard may not work on windows
 get_property(_WRAPPED_CLASSES TARGET kameleon_plus_jni PROPERTY CLASSDIR)
 
 
