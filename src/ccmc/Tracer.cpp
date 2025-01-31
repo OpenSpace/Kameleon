@@ -1674,7 +1674,7 @@ namespace ccmc
 	 * @return
 	 */
 	vector<Fieldline> Tracer::getLastClosedFieldlines(int numberOfFieldlines, int stepMax,
-			int numberOfPointsPerReducedFieldline)
+			float startRadius, int numberOfPointsPerReducedFieldline)
 	{
 		vector<Fieldline> fieldlines;
 
@@ -1682,7 +1682,11 @@ namespace ccmc
 		for (int i = 0; i < numberOfFieldlines; i++)
 		{
 
-			Point3f start(3.0 * cos(delta * (float) i), 3.0 * sin(delta * (float) i), 0.0);
+			Point3f start(
+                startRadius * cos(delta * (float) i),
+                startRadius * sin(delta * (float) i),
+                0.0
+            );
 			Fieldline currentFieldline = findLastClosed(start, stepMax);
 			cout << "currentFieldline.size(): " << currentFieldline.size() << endl;
 			float totaldistance = 0.0;

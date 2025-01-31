@@ -44,7 +44,7 @@ namespace ccmc
 			Fieldline unidirectionalTraceWithDipole(const std::string& variable, const float& startComponent1, const float& startComponent2,
 					const float& startComponent3, const Direction& dir = FOWARD);
 			Fieldline findLastClosed(Point3f position, int stepMax);
-			std::vector<Fieldline> getLastClosedFieldlines(int numberOfFieldlines, int stepMax, int numberOfPointsPerReducedFieldline);
+			std::vector<Fieldline> getLastClosedFieldlines(int numberOfFieldlines, int stepMax, float startRadius, int numberOfPointsPerReducedFieldline);
 			bool isClosed(Fieldline& fieldline);
 			void setUseMaxArcLength(bool useMaxArcLength);
 			Point3f getVector(const std::string& variable, const Point3f& position, float& dComponent1,
@@ -63,7 +63,7 @@ namespace ccmc
 			float tilt;
 			float missing;
 			float maxArcLength;
-			std::string b_,bx_,by_,bz_;
+			std::string b_="b", bx_, by_, bz_;
 			std::string br_,bphi_,btheta_;
 			std::string ux_,uy_,uz_;
 			std::string ur_,uphi_,utheta_;
