@@ -1623,7 +1623,8 @@ namespace ccmc
 			previousClosedPoint = currentPoint;
 		} else
 		{
-			cout << "uh oh... " << endl;
+			cout << "uh oh... number of points on fieldline "
+                 << currentFieldline.size() << endl;
 		}
 
 		while (isClosed(currentFieldline))
@@ -1678,7 +1679,7 @@ namespace ccmc
 	{
 		vector<Fieldline> fieldlines;
 
-		float delta = 360.0 / (float) numberOfFieldlines * 3.14159 / 180.0;
+		float delta = 360.0 / (float) numberOfFieldlines * 3.14159f / 180.0f;
 		for (int i = 0; i < numberOfFieldlines; i++)
 		{
 
