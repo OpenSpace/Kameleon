@@ -223,7 +223,7 @@ namespace ccmc
 			vData = (*iter).second;
 		else
 		{
-			std::cerr << "variable: " << variable << " not found!!!" << std::endl;
+			//std::cerr << "variable: " << variable << " not found!!!" << std::endl;
 		}
 		return vData;
 	}

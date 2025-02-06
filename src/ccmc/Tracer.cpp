@@ -1632,14 +1632,16 @@ namespace ccmc
 			previousPoint = currentPoint;
 			previousFieldline = currentFieldline;
 
-			currentPoint = currentPoint + direction * 3.;
+			currentPoint = currentPoint + direction * 3.0;
 			currentFieldline = bidirectionalTrace(b_, currentPoint.component1, currentPoint.component2,
 					currentPoint.component3);
 
 			count++;
 		}
+        cout << "Stepping count = " << count << endl;
 
 		//need to perform binary search now
+        count = 0;
 		Point3f middlePoint;
 		float dist = currentPoint.distance(previousPoint);
 		while (dist > .001)
@@ -1662,7 +1664,7 @@ namespace ccmc
 			dist = currentPoint.distance(previousPoint);
 
 		}
-
+        cout << "Binary searh count = " << count << endl;
 		return previousFieldline;
 
 	}
