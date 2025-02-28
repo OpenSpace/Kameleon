@@ -6,6 +6,7 @@
  */
 
 #include "Shue.h"
+#include <cmath>
 #include <fstream>
 #include <sstream>
 
@@ -357,8 +358,6 @@ void IMF::calculateMagnetopause(const time_t& targetTime, vector<float>& xPositi
 		float start = bSearchMagnetopauseStart(targetTime, 0.f, 33.f);
 		float delta = (start - nightSideExtent)/(float)(slices-1);
 		cout << "start of magnetopause: " << bSearchMagnetopauseStart(targetTime, 0.f, 33.f) << endl;
-		radius;
-		isInside;
 		xPositions.push_back(start);
 		radii.push_back(0.f);
 		for (int i = 0; i < slices; i++)

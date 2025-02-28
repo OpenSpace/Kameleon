@@ -1945,7 +1945,7 @@ namespace ccmc
 			 vectorComponentName1 = &jx_;
 			 vectorComponentName2 = &jy_;
 			 vectorComponentName3 = &jz_;
-			 } /*else if (variable == "v" || variable == "u" || variable == "ux" || variable == "uy"
+			 } else if (variable == "v" || variable == "u" || variable == "ux" || variable == "uy"
 			 || variable == "uz")
 			 {
 			 vectorComponentName1 = "ux";

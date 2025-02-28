@@ -22,7 +22,7 @@
  * - CTIP
  * - ADAPT3D
  *
- * Java, C, and Fortran compatible interfaces are provided through the use of the wrapper headers and code (ccmc/wrappers/*).
+ * Java, C, and Fortran compatible interfaces are provided through the use of the wrapper headers and code (ccmc/wrappers/).
  *
  * @section Purpose
  * The purpose of this library is to provide easy access and interpolation methods

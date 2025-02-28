@@ -11,6 +11,7 @@
 #include "Constants.h"
 #include "StringConstants.h"
 #include "Utils.h"
+#include <cmath>
 
 namespace ccmc
 {

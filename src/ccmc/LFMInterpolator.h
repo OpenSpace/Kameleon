@@ -16,6 +16,7 @@
 #include "Polyhedron.h"
 //#include "boost/ptr_container/ptr_vector.hpp"
 //#include "boost/unordered_map.hpp"
+#include <memory>
 
 namespace ccmc
 {

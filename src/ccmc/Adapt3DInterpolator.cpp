@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "StringConstants.h"
 #include "MathHelper.h"
+#include <cmath>
 #define MIN_RANGE    -1e9
 #define MAX_RANGE    +1e9
 #define NNODE_ADAPT3D 4

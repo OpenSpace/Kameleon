@@ -1,5 +1,6 @@
 #include "Point3f.h"
 #include "Constants.h"
+#include <cmath>
 //#include <boost/lexical_cast.hpp>
 
 namespace ccmc

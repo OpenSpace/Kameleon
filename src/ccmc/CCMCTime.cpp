@@ -1,5 +1,6 @@
 #include "CCMCTime.h"
 #include "cdf.h"
+#include <cstring>
 #include <iomanip>
 #include <sstream>
 //#include <boost/format.hpp>

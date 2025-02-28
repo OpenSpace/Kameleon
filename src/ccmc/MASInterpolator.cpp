@@ -11,6 +11,7 @@
 #include "Model.h"
 #include "Constants.h"
 #include "Utils.h"
+#include <cmath>
 //#define DEBUG_MAS_INTERPOLATOR
 
 namespace ccmc

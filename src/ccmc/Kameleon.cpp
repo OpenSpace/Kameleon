@@ -699,8 +699,8 @@ namespace ccmc
 		v_out->c0 = v_out_[0];
 		v_out->c1 = v_out_[1];
 		v_out->c2 = v_out_[2];
-		delete v_in_;
-		delete v_out_;
+		delete[] v_in_;
+		delete[] v_out_;
 		return status;
 	}
 

@@ -8,8 +8,9 @@
 #include "MathHelper.h"
 //#include <boost/numeric/conversion/bounds.hpp>
 //#include <boost/limits.hpp>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <limits>
 
 namespace ccmc
 {
