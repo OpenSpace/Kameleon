@@ -574,7 +574,7 @@ namespace ccmc
 				attributeValue = attributeBuffer;
 				attributeValue = attributeValue.substr(0, numElements); //only use valid parts of char string
 			}
-            delete attributeBuffer;
+            delete[] attributeBuffer;
 
 			char attributeNameBuffer[512];
 
