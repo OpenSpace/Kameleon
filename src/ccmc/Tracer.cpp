@@ -23,7 +23,7 @@ namespace ccmc
 		//	cout << "Tracer object created" << endl;
 		this->kameleon = kameleon;
 		missing = kameleon->getMissingValue();
-		dn = .2f;
+		dn = 1.0f;
 
 		initializeComponentNamesMap();
 
@@ -51,7 +51,7 @@ namespace ccmc
 		//	cout << "Tracer object created" << endl;
 		this->kameleon = kameleon;
 		missing = kameleon->getMissingValue();
-		dn = .2f;
+		dn = 1.0f;
 
 		initializeComponentNamesMap();
 
