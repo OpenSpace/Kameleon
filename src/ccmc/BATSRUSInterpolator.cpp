@@ -115,7 +115,7 @@ namespace ccmc
 		float missingValue = this->modelReader->getMissingValue();
 		bool main_memory_flag = true;
 		if (this->modelReader->getVariableFromMap(variable_id) == NULL)
-			main_memory_flag = false;
+			main_memory_flag = true;
 		long status;
 
 		/********* interpolate_amr_data variables for new interpolation routine/upgrade *******/
@@ -499,7 +499,7 @@ namespace ccmc
 		//std::cout << "BATSRUSInterpolator::interpolate. variable: " << variable << std::endl;
 		bool main_memory_flag = true;
 		if (this->modelReader->getVariableFromMap(variable) == NULL)
-			main_memory_flag = false;
+			main_memory_flag = true;
 
 
 		long status;
