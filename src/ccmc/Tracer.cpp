@@ -7,7 +7,6 @@
 //#define DEBUG_TRACER
 #define DEPRECATED_WARNING
 
-#include "C:\OpenSpace\OpenSpace\ext\ghoul\ext\tracy\public\tracy\Tracy.hpp"
 using namespace std;
 
 //Tracer tracer(NULL);
@@ -376,7 +375,6 @@ namespace ccmc
 	Fieldline Tracer::bidirectionalTrace(const std::string& variable, const float& startComponent1,
 			const float& startComponent2, const float& startComponent3)
 	{
-        ZoneScoped;
 		Fieldline f1(this->step_max*2);
 		std::string model_name = kameleon->getModelName();
 //		Interpolator * interpolator = kameleon->createNewInterpolator(); A. Pembroke removed
@@ -684,7 +682,6 @@ namespace ccmc
 			const float& startComponent2, const float& startComponent3, Interpolator * interpolator,
 			const Direction& dir)
 	{
-        ZoneScoped;
 		float adjusted_dn = dn;
 		if (dir == REVERSE)
 		{
@@ -1594,7 +1591,6 @@ namespace ccmc
 	 */
 	Fieldline Tracer::findLastClosed(Point3f position, int stepMax)
 	{
-        ZoneScoped;
 		Fieldline currentFieldline;
 		Fieldline previousFieldline;
 		//Point currentPoint = new Point();
@@ -1681,13 +1677,11 @@ namespace ccmc
 	vector<Fieldline> Tracer::getLastClosedFieldlines(int numberOfFieldlines, int stepMax,
 			float startRadius, int numberOfPointsPerReducedFieldline)
 	{
-        ZoneScoped;
 		vector<Fieldline> fieldlines;
 
 		float delta = 360.0 / (float) numberOfFieldlines * 3.14159f / 180.0f;
 		for (int i = 0; i < numberOfFieldlines; i++)
 		{
-            ZoneScopedN("Per seed point");
 			Point3f start(
                 startRadius * cos(delta * (float) i),
                 startRadius * sin(delta * (float) i),
@@ -1700,7 +1694,6 @@ namespace ccmc
 			vector<float> data = currentFieldline.getData();
 			for (int j = 0; j < currentFieldline.size() - 1; j++)
 			{
-                ZoneScopedN("accumulating total discance");
 				float a = (positions[j + 1].component1 - positions[j].component1);
 				float b = (positions[j + 1].component2 - positions[j].component2);
 				float c = (positions[j + 1].component3 - positions[j].component3);
@@ -1716,7 +1709,6 @@ namespace ccmc
 
 			for (int j = 1; j < (numberOfPointsPerReducedFieldline - 1); j++)
 			{
-                ZoneScopedN("Per number of points to reduced fieldline");
 				float currentTargetDistance = (float) j * increments;
 				float currentDistance = previousDistance;
 
