@@ -3,7 +3,7 @@
 #########################################################################################
 
 # top level CMakeLists.txt (kameleon-plus/)
-cmake_minimum_required(VERSION 2.8.12) 
+cmake_minimum_required(VERSION 3.10)
 project(Kameleon)
 
 # Use <PackageName>_ROOT variables
