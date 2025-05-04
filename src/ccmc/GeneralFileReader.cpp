@@ -32,8 +32,8 @@ namespace ccmc
 		long status = fileReader->open(filename);
 		if (status == FileReader::OK)
 		{
-//			std::cerr << "Initialized a CDF file reader" << std::endl;
-			//this->fileReader = fileReader;
+            // std::cerr << "Initialized a CDF file reader" << std::endl;
+			// this->fileReader = fileReader;
 			return status;
 		}
 
