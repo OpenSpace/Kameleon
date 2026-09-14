@@ -29,6 +29,7 @@
 #include "nanoflann.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 using namespace nanoflann;

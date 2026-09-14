@@ -39,6 +39,8 @@
 #include "Attribute.h"
 #include "CCMCTime.h"
 #include <unordered_map>
+#include <string>
+#include <vector>
 
 //cdf constants
 #define EPOCH3_STRING_LEN        24

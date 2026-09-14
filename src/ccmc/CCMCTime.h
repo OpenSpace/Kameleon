@@ -2,6 +2,7 @@
 #define CCMC_TIME_H
 
 #include <ostream>
+#include <string>
 
 namespace ccmc
 {

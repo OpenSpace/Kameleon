@@ -8,6 +8,8 @@
 // #ifndef LFM_H_
 // #define LFM_H_
 #include "Model.h"
+#include <string>
+#include <vector>
 
 namespace ccmc
 {

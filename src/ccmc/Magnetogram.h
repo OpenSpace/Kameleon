@@ -10,6 +10,7 @@
 
 #include "Model.h"
 #include "Interpolator.h"
+#include <string>
 
 namespace ccmc
 {

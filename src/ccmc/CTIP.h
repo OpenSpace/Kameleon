@@ -12,6 +12,7 @@
  *
  */
 #include "Model.h"
+#include <string>
 
 namespace ccmc
 {

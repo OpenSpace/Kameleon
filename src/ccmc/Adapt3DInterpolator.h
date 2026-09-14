@@ -9,6 +9,8 @@
 #define ADAPT3DINTERPOLATOR_H_
 
 #include "Interpolator.h"
+#include <string>
+#include <vector>
 
 #define NNODE_ADAPT3D 4
 #define NDIMN_ADAPT3D 3

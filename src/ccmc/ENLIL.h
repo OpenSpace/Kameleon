@@ -10,6 +10,8 @@
 
 #include <string>
 #include "Model.h"
+#include <vector>
+#include <unordered_map>
 //#include "Interpolator.h"
 
 namespace ccmc

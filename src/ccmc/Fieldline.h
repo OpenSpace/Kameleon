@@ -11,6 +11,7 @@
 #include "Point3f.h"
 #include "Vector.h"
 #include <vector>
+#include <string>
 
 namespace ccmc
 {

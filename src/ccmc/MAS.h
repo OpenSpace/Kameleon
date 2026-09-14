@@ -9,6 +9,9 @@
 #define MAS_H_
 
 #include "Model.h"
+#include <string>
+#include <vector>
+#include <unordered_map>
 //#include <boost/unordered_map.hpp>
 
 namespace ccmc

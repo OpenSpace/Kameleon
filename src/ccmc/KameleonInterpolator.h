@@ -10,6 +10,8 @@
 
 #include <unordered_map>
 #include "Interpolator.h"
+#include <string>
+#include <vector>
 
 namespace ccmc
 {

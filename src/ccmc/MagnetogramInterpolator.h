@@ -9,6 +9,7 @@
 #define MAGNETOGRAMINTERPOLATOR_H_
 
 #include "Interpolator.h"
+#include <string>
 
 namespace ccmc
 {

@@ -10,6 +10,8 @@
 
 #include "Vector.h"
 #include <fstream>
+#include <vector>
+#include <iostream>
 namespace ccmc
 
 {

@@ -9,6 +9,9 @@
 #define TIMEINTERPOLATOR_H_
 
 #include "CCMCTime.h"
+#include <vector>
+#include <unordered_map>
+#include <string>
 
 namespace std {
 	template <>

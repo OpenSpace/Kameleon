@@ -2,6 +2,9 @@
 #define CCMC_TRACER_H
 
 #include "Fieldline.h"
+#include <unordered_map>
+#include <string>
+#include <vector>
 /**
  * @namespace ccmc
  * @brief Namespace for the Community Coordinated Modeling Center code

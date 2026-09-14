@@ -13,6 +13,7 @@
 #include "cdf.h"
 #include <algorithm>
 #include <cstring>
+#include <iostream>
 //#include "boost/functional/hash.hpp"
 
 std::size_t std::hash<ccmc::Time>::operator()(const ccmc::Time& t) const {

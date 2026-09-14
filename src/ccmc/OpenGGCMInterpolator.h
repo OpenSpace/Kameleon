@@ -9,6 +9,9 @@
 #define OPENGGCMINTERPOLATOR_H_
 
 #include "Interpolator.h"
+#include <string>
+#include <vector>
+#include <unordered_map>
 
 namespace ccmc
 {

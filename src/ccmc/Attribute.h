@@ -8,6 +8,7 @@
 #ifndef ATTRIBUTE_H_
 #define ATTRIBUTE_H_
 #include <string>
+#include <iostream>
 
 namespace ccmc
 {

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "KameleonInterpolator.h"
 #include "Model.h"
 #define _USE_MATH_DEFINES

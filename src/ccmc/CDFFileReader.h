@@ -10,6 +10,8 @@
 #include "FileReader.h"
 
 #include "cdf.h"
+#include <string>
+#include <vector>
 
 
 

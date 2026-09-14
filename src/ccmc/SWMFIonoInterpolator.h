@@ -9,6 +9,8 @@
 #define _SWMFIonoInterpolator_h
 
 #include "Interpolator.h"
+#include <string>
+#include <vector>
 
 namespace ccmc{ 
 

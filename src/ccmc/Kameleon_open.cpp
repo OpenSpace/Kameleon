@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Kameleon.h"
 #include "FileReader.h"
 #include "OpenGGCM.h"

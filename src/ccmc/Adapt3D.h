@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "Point3f.h"
 #include <vector>
+#include <string>
 //#include <boost/multi_array.hpp>
 
 #define NNODE_ADAPT3D 4

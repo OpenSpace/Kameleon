@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Tracer.h"
 #include "Constants.h"
 #include "Interpolator.h"

@@ -7,6 +7,7 @@
 
 #ifndef INTERPOLATOR_H_
 #define INTERPOLATOR_H_
+#include <string>
 
 namespace ccmc
 {

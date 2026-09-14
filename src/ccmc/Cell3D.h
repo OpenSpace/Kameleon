@@ -12,6 +12,7 @@
 #include <vector>
 #include <deque>
 #include "Vector.h"
+#include <string>
 
 namespace ccmc
 {

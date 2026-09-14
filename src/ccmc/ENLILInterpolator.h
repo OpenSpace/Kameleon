@@ -10,6 +10,7 @@
 
 #include "Interpolator.h"
 #include <string>
+#include <vector>
 
 namespace ccmc
 {

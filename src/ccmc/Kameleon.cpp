@@ -1,3 +1,4 @@
+#include <iostream>
 /**
  * @file derived.cpp
  * @brief Utility functions to extend the functionality of the CCMC

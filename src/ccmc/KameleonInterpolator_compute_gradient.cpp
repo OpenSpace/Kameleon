@@ -1,3 +1,4 @@
+#include <iostream>
 /*
  * KameleonInterpolator_compute_gradient.cpp
  *

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "TimeInterp_f.h"
 #include <ccmc/wrappers/c/TimeInterpolator_c.h>
 #include <ccmc/Kameleon.h>
