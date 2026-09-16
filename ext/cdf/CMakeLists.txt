@@ -4,7 +4,7 @@
 # General settings
 #########################################################################################
 if (NOT CDF_ROOT_DIR)
-    set(CDF_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cdf35_0-dist)
+    set(CDF_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cdf38_0-dist)
 endif ()
 
 #########################################################################################
@@ -41,8 +41,8 @@ if(CDF_BUILD_ZLIB)
 
 	set(ALL_SOURCE ${ALL_SOURCE} ${ZLIB_SOURCE})
 endif(CDF_BUILD_ZLIB)
-
-add_definitions(-Di386 -D__MACH__ -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DHAVE_STDARG_H -DHAVE_UNISTD_H -DZ_PREFIX)
+# old(cdf35_0-dist): add_definitions(-Di386 -D__MACH__ -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DHAVE_STDARG_H -DHAVE_UNISTD_H -DZ_PREFIX) 
+add_definitions(-c -nologo -W3 -Gm -GX -ZI -Od -D_WIN32 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE)
 if(__APPLE__)
 	add_definitions(-Dmac )
 endif(__APPLE__)
